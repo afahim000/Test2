@@ -1,0 +1,133 @@
+extends base
+
+block content 
+
+  section#section--1.section 
+    .section__tittle  
+      h2.section__description Monk Parakeet
+      h3.section__header Study Behaviour of Monk Parakeet Colonies
+    
+    .features
+      //- img2/nest.jpg
+      img.features__img.lazy__img(src='' data-src='' alt='Nest')
+      
+      .features__feature 
+        .features__icon 
+          svg 
+            //- img2/icons.svg#icon-camera
+            use(href='')
+        h5.features__header Photographic recordings 
+        p We own a database with the locations of many colonies of monk parakeet in New york city.
+
+      .features__reature
+        .features__icon 
+          svg 
+            //- img2/icons.svg#icon-compass
+            use(href='')
+        h5.features__header Map 
+        p Easy visualization of each colony with our personalize map for easy access.
+      //- img2/map.png
+      img.features__img.lazy-img(src='' data-src='' alt='Map')
+
+      img.features__img.lazy-img(src='' data-src='' alt='Audio')
+
+      .features__feature 
+        .features__icon 
+          svg
+            //- img2/icons.svg#icon-feather
+            use(href='')
+        h5.features__header Audio Recordings
+        p We study the diferent patters in the Monk Parakeet calls.
+  
+  section#section--2.section 
+    .section__tittle 
+      h2.section__description Fiddle Crabs
+      h3.section__header Brooklyn Coasts are fill with Fiddle Crabs
+      //- img2/Fiddler-Crabs.jpg
+      img(src='' alt='Minimalist crab items')
+    
+    .operations 
+      .perations__tab-container 
+      
+      h2 Fiddlers are among the most abundant "large" animals in the marsh; as such, they are important regulators of primary production (Spartina-derived), and decomposition (bacteria and fungi). Fiddler crabs are also important in energy flow within the marsh. They are estimated to consume up to a third of the net production of an emergent marsh and may assimilate 10% of that amount.
+
+      .operations__content.operations__content--2
+        .operations__icon.operations__icon--2
+          srg 
+
+      .operations__content.operations__content--3
+        .operations__icon.operations__icon--3
+  
+  section#section-3.section 
+    .section__title.section__title--testimonials
+      h2.section__description Nor sure yet?
+      h3.section__header Our team is working in many project!
+
+    .slider
+      .slide 
+        .testimonial 
+          h5.testimonial__header Fiddle Crabs are the Best!
+          blockquote.testimonial__text Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            | Accusantium quas quisquam non? Quas voluptate nulla minima
+            | deleniti optio ullam nesciunt, numquam corporis et asperiores
+            | laboriosam sunt, praesentium suscipit blanditiis. Necessitatibus
+            | id alias reiciendis, perferendis facere pariatur dolore veniam
+            | autem esse non voluptatem saepe provident nihil molestiae.
+          address.testimonial__author 
+            //- img2/user-1.jpg
+            img.testimonial__photo(src='' alt='Testimony')
+            h6.testimonial__name Aarav Lynn
+            p.testimonial__location San Francisco, USA 
+
+      .slide 
+        .testimonial
+          h5.testimonial__header I like Birds!! 
+          blockquote.testimonial__text Quisquam itaque deserunt ullam, quia ea repellendus provident,
+            | ducimus neque ipsam modi voluptatibus doloremque, corrupti
+            | laborum. Incidunt numquam perferendis veritatis neque repellendus.
+            | Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
+            | deserunt exercitationem deleniti.
+          address.testimonial__author 
+            //- img2/user-3.jpg
+            img.testonial__photo(src='' alt='')
+            h6.testimonial__name Francisco Gomez 
+            p.testimonial__location Lisbon, Portugal
+
+      button.slider__btn.sliderbtn--left &larr;
+      button.slider__btn.sliderbtn--tight &rarr;
+      .dots 
+    
+  section.section.section--sign-up
+    .section__tittle 
+      h3.section__header 
+      button.btn.btn--show-modal Log in
+
+  .modal.hidden
+    button.btn--close-modal &times;
+    h2.modal_header Log in <br> in BCR Lab for
+      span.hightlight more features 
+    
+    from.modal_form
+      label First Name 
+      input(type='text')
+      label Last Name 
+      input(type='text') 
+      label Email Address
+      input(type='email')
+      button.btn Next step &rarr;
+
+    .overlay.hidden
+
+
+
+
+
+
+
+
+      
+
+
+  
+                    
+            
