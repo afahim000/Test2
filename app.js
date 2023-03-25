@@ -13,12 +13,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// To display the pictures
-// gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine
-// don't know if works
-//app.use('pictures', express.static(process.cwd() + 'pictures'));
-app.use(express.static('pictures'))
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,6 +21,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', viewsRouter);
 app.use('/users', usersRouter);
+
+
+// ***** DELETE THIS ? *****
+// To display the pictures
+// gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine 
+// don't know if works
+//app.use('pictures', express.static(process.cwd() + 'pictures'));
+//app.use(express.static('pictures'))
+// app.use(express.static(path.join(__dirname, 'assets')))
+// app.use('assets', express.static(process.cwd() + 'assets'));
+app.use('/images', express.static(__dirname + '/assets/images'));
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
