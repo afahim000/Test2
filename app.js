@@ -35,6 +35,12 @@ app.use('/data', dataRouter);
 app.use('/images', express.static(__dirname + '/assets/images'));
 
 
+// To link button.pug page from _header.pug
+// app.get(__dirname + '/views/button', (req, res) => {
+//   res.render('buttons');
+// });
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
