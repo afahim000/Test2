@@ -7,5 +7,6 @@ const router = express.Router();
 // Root address. Authentication and Render Overview
 //Routes HTTP GET requests to the specified path with the specified callback functions.
 router.get('/', viewsController.getOverview);
+
 //Export the entire module
 module.exports = router;

@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var dataRouter = require('./controllers/dataRouter');
 var viewsRouter = require('./routes/viewsRoutes');
 var usersRouter = require('./routes/users');
 
@@ -21,7 +21,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', viewsRouter);
 app.use('/users', usersRouter);
-
+app.use('/data', dataRouter);
+//jiohoij
 
 // ***** DELETE THIS ? *****
 // To display the pictures
