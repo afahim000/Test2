@@ -1,8 +1,10 @@
 const model = require('../models/modified model');
 
+const multer = require('multer');
+
 exports.getOptions = (req, res) =>
-{
-	res.send("Not Implemented yet");
+{	
+	res.status(200).render('tester', { title: 'tester' });
 };
 
 exports.queryOptionsGet = (req, res) => 

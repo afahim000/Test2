@@ -1,0 +1,9 @@
+doctype html
+html
+h1 File Upload
+form(action='/upload' method='POST' enctype='multipart/form-data')
+.btn.grey
+span File
+	input(name='myImage' type='file')
+	button.btn(type='submit') Submit
+
