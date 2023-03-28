@@ -8,7 +8,6 @@ exports.queryOptionsGet = (req, res) => {
 	res.send("Not Implemented yet");
 };
 
-
 exports.addDataGet = (req, res) => {
 	res.send("Not Implemented yet");
 };
