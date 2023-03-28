@@ -23,7 +23,7 @@ app.use('/', viewsRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
 //jiohoij
-app.use('/upload', dataRouter);
+
 // ***** DELETE THIS ? *****
 // To display the pictures
 // gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine 

@@ -1,13 +1,29 @@
 const model = require('../models/modified model');
 const path = require('path');
 const multer = require('multer');
+
 const images = multer.diskStorage({
-	destination: '../dev-data/img',
+	destination: './dev-data/img',
+	filename: function(req, file, cb)
+	{
+		cb(null, file.fieldname = '-' + Date.now().toLocaleString() + path.extname(file.originalname));
+	}
+});
+const videos = multer.diskStorage({
+	destination: './dev-data/videos',
 	filename: function(req, file, cb)
 	{
 		cb(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
 	}
 });
+const audio = multer.diskStorage({
+	destination: './dev-data/audio',
+	filename: function(req, file, cb)
+	{
+		cb(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
+	}
+});
+
 /*
 const audio = multer.diskStorage({
 	destination: '../dev-data/audio'.
@@ -29,8 +45,14 @@ const imgUpload = multer({
 	storage: images
 }).single('myImage');
 
-//const vidUpload;
-//const audioUpload;
+const audioUpload = multer({
+	storage: images
+}).single('myImage');
+
+const videoUpload = multer({
+	storage: images
+}).single('myImage');
+
 exports.getOptions = (req, res) =>
 {	
 	res.status(200).render('buttons', { title: 'buttons' });
@@ -43,6 +65,7 @@ exports.queryOptionsGet = (req, res) =>
 
 exports.addDataGet = (req, res) => 
 {
+	
 	res.status(200).render('tester', { title: 'tester' });
 };
 
