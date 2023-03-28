@@ -17,11 +17,16 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// 'public' dir has the css, js, and images dirs
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', viewsRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
+<<<<<<< HEAD
+
+=======
 //jiohoij
 
 // ***** DELETE THIS ? *****
@@ -33,6 +38,7 @@ app.use('/data', dataRouter);
 // app.use(express.static(path.join(__dirname, 'assets')))
 // app.use('assets', express.static(process.cwd() + 'assets'));
 app.use('/images', express.static(__dirname + '/assets/images'));
+>>>>>>> d2b69c215fba76670044d63038363d2328c4877f
 
 
 // To link button.pug page from _header.pug

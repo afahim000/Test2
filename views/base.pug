@@ -8,12 +8,11 @@ html
       link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
       link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
       title BCR Lab | #{title}
-      style 
-        include ../assets/css/style.css
-      //- link(rel='stylesheet' href='../assets/css/style.css' type='text/css')
-      //- script(type='text/javascript' src='../assets/javascript/script.js')
-      script
-        include ../assets/js/script.js
+      //- script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin="")
+      //- link(href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet")
+      link(rel="stylesheet" type="text/css" href="stylesheets/style.css")
+      script(type='text/javascript' src='/javascripts/script.js')
+
 
 
   body(data-alert=`${alert ? alert : ''}`)
