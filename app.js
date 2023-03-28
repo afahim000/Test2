@@ -25,12 +25,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', viewsRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
-app.use('/upload', dataRouter);
-app.use('/data/add', add);
+<<<<<<< HEAD
 
+=======
+//jiohoij
+app.use('/upload', dataRouter);
 // ***** DELETE THIS ? *****
 // To display the pictures
-// gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine 
+// gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine
 // don't know if works
 //app.use('pictures', express.static(process.cwd() + 'pictures'));
 //app.use(express.static('pictures'))

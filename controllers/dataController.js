@@ -1,15 +1,13 @@
 const model = require('../models/modified model');
 const path = require('path');
 const multer = require('multer');
-
-
 const images = multer.diskStorage({
-	destination: './models',
+	destination: '../dev-data/img',
 	filename: function (req, file, cb) {
-		// This renames the uploaded file
-		cb(null, file.fieldname = '-' + Date.now());
+		cb(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
 	}
 });
+
 /*
 const audio = multer.diskStorage({
 	destination: '../dev-data/audio'.
