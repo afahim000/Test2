@@ -6,8 +6,8 @@ var logger = require('morgan');
 var dataRouter = require('./controllers/dataRouter');
 var viewsRouter = require('./routes/viewsRoutes');
 var usersRouter = require('./routes/users');
-
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,7 +24,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', viewsRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
+<<<<<<< HEAD
 
+=======
+//jiohoij
+app.use('/upload', dataRouter);
+// ***** DELETE THIS ? *****
+// To display the pictures
+// gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine 
+// don't know if works
+//app.use('pictures', express.static(process.cwd() + 'pictures'));
+//app.use(express.static('pictures'))
+// app.use(express.static(path.join(__dirname, 'assets')))
+// app.use('assets', express.static(process.cwd() + 'assets'));
+app.use('/images', express.static(__dirname + '/assets/images'));
+>>>>>>> d2b69c215fba76670044d63038363d2328c4877f
 
 
 // To link button.pug page from _header.pug
@@ -49,5 +63,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
