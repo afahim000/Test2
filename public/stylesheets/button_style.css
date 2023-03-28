@@ -25,3 +25,7 @@
     background-color: var(--color-primary);
     color: #222;
 }
+
+body {
+    background-color: #fd424b;
+}

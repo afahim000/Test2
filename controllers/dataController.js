@@ -1,11 +1,13 @@
 const model = require('../models/modified model');
 const path = require('path');
 const multer = require('multer');
+
+
 const images = multer.diskStorage({
-	destination: '../dev-data/img',
-	filename: function(req, file, cb)
-	{
-		cb(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
+	destination: './models',
+	filename: function (req, file, cb) {
+		// This renames the uploaded file
+		cb(null, file.fieldname = '-' + Date.now());
 	}
 });
 /*
@@ -31,17 +33,11 @@ const imgUpload = multer({
 
 //const vidUpload;
 //const audioUpload;
-exports.getOptions = (req, res) =>
-{	
+exports.getOptions = (req, res) => {
 	res.status(200).render('buttons', { title: 'buttons' });
 };
 
-<<<<<<< HEAD
 exports.queryOptionsGet = (req, res) => {
-	res.send("Not Implemented yet");
-};
-
-exports.addDataGet = (req, res) => {
 	res.send("Not Implemented yet");
 };
 
@@ -57,39 +53,29 @@ exports.addDataPost = (req, res) => {
 	res.send("Not Implemented yet");
 };
 
-exports.deletePost = (req, res) => {
-=======
-exports.queryOptionsGet = (req, res) => 
-{
+exports.queryOptionsGet = (req, res) => {
 	res.send("Not Implemented yet");
 };
 
-exports.addDataGet = (req, res) => 
-{
+exports.addDataGet = (req, res) => {
 	res.status(200).render('tester', { title: 'tester' });
 };
 
-exports.deleteGet = (req, res) => 
-{
+exports.deleteGet = (req, res) => {
 	res.send("Not Implemented yet");
 };
 
-exports.queryOptionsPost = (req, res) => 
-{
+exports.queryOptionsPost = (req, res) => {
 	res.send("Not Implemented yet");
 };
 
-exports.addDataPost = (req, res) => 
-{
-imgUpload(req, res, (err) =>
-	{
-		if(err)
-		{
+exports.addDataPost = (req, res) => {
+	imgUpload(req, res, (err) => {
+		if (err) {
 			res.render('tester');
 			res.send('MEOWWWW!!!!');
 		}
-		else
-		{
+		else {
 			console.log(req.file);
 			res.send('test');
 
@@ -98,10 +84,8 @@ imgUpload(req, res, (err) =>
 };
 
 
-exports.deletePost = (req, res) => 
-{
->>>>>>> d2b69c215fba76670044d63038363d2328c4877f
+exports.deletePost = (req, res) => {
+	// >>>>>>> d2b69c215fba76670044d63038363d2328c4877f
 	res.send("Not Implemented yet");
 };
-
 
