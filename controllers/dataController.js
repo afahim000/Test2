@@ -57,7 +57,7 @@ exports.queryOptionsGet = (req, res) => {
 };
 
 exports.addDataGet = (req, res) => {
-	res.status(200).render('tester', { title: 'form' });
+	res.status(200).render('data-upload', { title: 'form' });
 };
 
 exports.deleteGet = (req, res) => {
@@ -71,7 +71,7 @@ exports.queryOptionsPost = (req, res) => {
 exports.addDataPost = (req, res) => {
 	imgUpload(req, res, (err) => {
 		if (err) {
-			res.render('tester');
+			res.render('data-upload');
 			res.send('MEOWWWW!!!!');
 		}
 		else {
