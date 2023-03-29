@@ -1,10 +1,11 @@
 const model = require('../models/modified model');
 const path = require('path');
 const multer = require('multer');
+
 const images = multer.diskStorage({
-	destination: '../dev-data/img',
-	filename: function (req, file, cb) {
-		cb(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
+	destination: './dev-data/img',
+	filename: function (req, file, callback) {
+		callback(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
 	}
 });
 
@@ -56,7 +57,7 @@ exports.queryOptionsGet = (req, res) => {
 };
 
 exports.addDataGet = (req, res) => {
-	res.status(200).render('tester', { title: 'tester' });
+	res.status(200).render('tester', { title: 'form' });
 };
 
 exports.deleteGet = (req, res) => {
@@ -83,7 +84,6 @@ exports.addDataPost = (req, res) => {
 
 
 exports.deletePost = (req, res) => {
-	// >>>>>>> d2b69c215fba76670044d63038363d2328c4877f
 	res.send("Not Implemented yet");
 };
 

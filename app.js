@@ -6,7 +6,6 @@ var logger = require('morgan');
 var dataRouter = require('./controllers/dataRouter');
 var viewsRouter = require('./routes/viewsRoutes');
 var usersRouter = require('./routes/users');
-const add = require('./routes/add');
 var app = express();
 
 
@@ -25,9 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', viewsRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
-<<<<<<< HEAD
 
-=======
 //jiohoij
 app.use('/upload', dataRouter);
 // ***** DELETE THIS ? *****
