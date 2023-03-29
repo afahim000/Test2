@@ -18,8 +18,8 @@ html(lang="en")
       * {margin: 0; padding: 0;}
 
       html {        
-        background: linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
-        font-family:  "Montserrat", arial, verdana;
+        background: linear-gradient(rgba(94, 197, 118, 0.7), rgba(255, 203, 3, 0.7));
+        font-family: montserrat, arial, verdana;
       }
 
       /*form styles*/
@@ -41,7 +41,7 @@ html(lang="en")
       }
 
       /*inputs*/
-      input {
+      .input {
         padding: 15px;
         border: 1px solid #ccc;
         border-radius: 3px;
@@ -52,8 +52,19 @@ html(lang="en")
         color: #2C3E50;
         font-size: 13px;
       }
-      /*buttons*/
-      #msform .action-button {
+
+      input::file-selector-button {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+        font-family: montserrat;
+        color: #2C3E50;
+        font-size: 13px;
+      }
+
+      /*button*/
+      button {
         width: 100px;
         background: #27AE60;
         color: white;
@@ -65,9 +76,28 @@ html(lang="en")
         text-decoration: none;
         font-size: 14px;
       }
-      #msform .action-button:hover, #msform .action-button:focus {
-        box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+
+      button:hover,
+      button:focus {
+        background: rgb(39, 174, 96, 0.7);
       }
+
+      /*Select and Option*/
+      select {
+        background-color: white;
+      }
+
+      option {
+        background-color: white;
+        font-family: montserrat !important;
+        color: #2C3E50;
+      }
+
+      /*Text area*/
+      textarea {
+        resize: none;
+      }
+
       /*headings*/
       .fs-title {
         font-size: 15px;
@@ -89,88 +119,28 @@ html(lang="en")
         fieldset
           h2.fs-title Upload a file
           h3.fs-subtitle Step 1: Type your name and 3-letter acronym
-          input(type="text" placeholder="First Name")
-          input(type="text" placeholder="Last Name")
-          input(type="text" placeholder="3-letter Acronym" maxlength="3")
+          input.input(type="text" placeholder="First Name" name='fname')
+          input.input(type="text" placeholder="Last Name" name='lname')
+          input.input(type="text" placeholder="3-letter Acronym" maxlength="3" name='acronym')
           h3.fs-subtitle Step 2: Select type of animal
-          select#animal_list.action-button(name='animal-list')
-            option(value='monk_parakeet') Monk Parakeet 
+          select.input(name='animal-list')
+            option(value="empty") 
+            option(value="monk_parakeet") Monk Parakeet 
             option(value='fiddler_crab') Fiddler Crab
           h3.fs-subtitle Step 3: Type location coordinates 
-          input(type="number" placeholder="Latitude" max="90" min="-90")
-          input(type="number" placeholder="Longitude" max="180" min="-180")
+          input.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude')
+          input.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude')
           h3.fs-subtitle Step 4: Select type of file
-          select#file_types.action-button(name="file-types")
-            option(valie='image') Image
+          select.input(name="file-types")
+            option(value='image') Image
             option(value='audio') Audio
             option(value='video') Video
           h3.fs-subtitle Step 5: Upload the file
-          input(name='myImage' type='file')
+          input.input(name='file' type='file')
+          h3.fs-subtitle Step 6: Give comments -optional-
+          textarea.input(nate='comments' type='text' maxlength='300' placeholder='Comments')
           h3.fs-subtitle Finally: Press Submit!
-          button.btn.action-button(type='submit') Submit
-
-
-    //- .input__form 
-    //-   form(method='POST' action='' enctype='multipart/form-data')
-    //-     .form__group
-    //-       label(for='fname') First Name: 
-    //-       input(type='text', placeholder='Name')
-    //-       <br>
-    //-       label(for='lname') Last Name: 
-    //-       input(type='text', placeholder='Last Name')
-    //-       <br>
-    //-       label(for='animal') Choose animal: 
-    //-       select#animal_list(name='animal-list')
-    //-         option(value='monk_parakeet') Monk Parakeet 
-    //-         option(value='fiddler_crab') Fiddler Crab
-    //-       <br>
-    //-       spam Location: 
-    //-       div
-    //-         label(for='latitude') Latitude: 
-    //-         input(type='number', placeholder='e.g. 40.771133') 
-    //-         <br>
-    //-         label(for='longitude') Longitude: 
-    //-         input(type='number', placeholder='e.g. -73.974187')
-    //-       <br>
-    //-       label(for='type_of_file') Type of file 
-    //-       select#file_types(name="file-types")
-    //-         option(valie='image') Image
-    //-         option(value='audio') Audio
-    //-         option(value='video') Video 
-    //-       <br>
-    //-       input(name='myImage' type='file')
-    //-       button.btn(type='submit') Submit
-  
-
-  //- .input__form 
-  //-   form(method='post' action='' enctype='multipart/form-data')
-  //-     label(for='fname') First Name: 
-  //-     input(type='text', placeholder='Name')
-  //-     <br>
-  //-     label(for='lname') Last Name: 
-  //-       input(type='text', placeholder='Last Name')
-  //-     <br>
-  //-     label(for='animal') Choose animal: 
-  //-     select(name='animal-list')
-  //-       option(value='monk_parakeet') Monk Parakeet 
-  //-       option(value='fiddler_crab') Fiddler Crab
-  //-     <br>
-  //-     spam Location: 
-  //-     div
-  //-       label(for='latitude') Latitude: 
-  //-       input(type='number', placeholder='e.g. 40.771133') 
-  //-       <br>
-  //-       label(for='longitude') Longitude: 
-  //-       input(type='number', placeholder='e.g. -73.974187')
-  //-     <br>
-  //-     label(for='type_of_file') Type of file 
-  //-     select(name="file-types")
-  //-       option(valie='image') Image
-  //-       option(value='audio') Audio
-  //-       option(value='video') Video 
-  //-     <br>
-  //-     input(name='myImage' type='file')
-  //-     input.btn(type='submit' value='Submit')
+          button.action-button(type='submit') Submit
           
 
 

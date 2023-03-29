@@ -28,7 +28,7 @@ const video = multer.diskStorage({
 */
 const imgUpload = multer({
 	storage: images
-}).single('myImage');
+}).single('file');
 
 //const vidUpload;
 //const audioUpload;

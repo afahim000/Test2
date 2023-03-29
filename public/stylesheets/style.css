@@ -1,5 +1,8 @@
 /* The page is NOT responsive. You can implement responsiveness yourself if you wanna have some fun 😃 */
 
+/* Custom font */
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
 :root {
   --color-primary: #5ec576;
   --color-secondary: #ffcb03;
@@ -26,7 +29,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family:  "Montserrat", arial, verdana;
   font-weight: 300;
   color: #444;
   line-height: 1.9;
