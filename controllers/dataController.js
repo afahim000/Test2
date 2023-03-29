@@ -1,26 +1,12 @@
 const model = require('../models/modified model');
 const path = require('path');
 const multer = require('multer');
+const { body, validationResult } = require("express-validator");
 
 const images = multer.diskStorage({
 	destination: './dev-data/img',
-	filename: function(req, file, cb)
-	{
-		cb(null, file.fieldname = '-' + Date.now().toLocaleString() + path.extname(file.originalname));
-	}
-});
-const videos = multer.diskStorage({
-	destination: './dev-data/videos',
-	filename: function(req, file, cb)
-	{
-		cb(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
-	}
-});
-const audio = multer.diskStorage({
-	destination: './dev-data/audio',
-	filename: function(req, file, cb)
-	{
-		cb(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
+	filename: function (req, file, callback) {
+		callback(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
 	}
 });
 
@@ -29,16 +15,9 @@ const imgUpload = multer({
 	storage: images
 }).single('myImage');
 
-const audioUpload = multer({
-	storage: images
-}).single('myImage');
-
-const videoUpload = multer({
-	storage: images
-}).single('myImage');
-
-exports.getOptions = (req, res) =>
-{	
+//const vidUpload;
+//const audioUpload;
+exports.getOptions = (req, res) => {
 	res.status(200).render('buttons', { title: 'buttons' });
 };
 
@@ -50,6 +29,7 @@ exports.deleteGet = (req, res) => {
 	res.send("Not Implemented yet");
 };
 
+
 exports.addDataGet = (req, res) => 
 {
 	
@@ -60,29 +40,24 @@ exports.queryOptionsPost = (req, res) => {
 	res.send("Not Implemented yet");
 };
 
+exports.addDataPost = (req, res) => {
 
-exports.addDataPost = (req, res) => 
-{
-imgUpload(req, res, (err) =>
-	{
-		if(err)
-		{
+body("fname", "First name required")
+	.trim().isLength({ min: 1 }).escape()
+
+	imgUpload(req, res, (err) => {
+		if (err) {
 			res.render('tester');
 			res.send('MEOWWWW!!!!');
 		}
-		else
-		{
+		else {
 			console.log(req.file);
 			res.send('test');
 
 		}
 	})
 };
-
-
-exports.deletePost = (req, res) => 
-{
+exports.deletePost = (req, res) => {
 	res.send("Not Implemented yet");
 };
-
 

@@ -1,21 +1,176 @@
 doctype html
-head
-meta(charset='UTF-8')
-meta(name='viewport' content='width=device-width, initial-scale=1.0')
-meta(http-equiv='X-UA-Compatible' content='ie=edge')
-link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css')
-title Node File Uploads
-.container
-h1 File Upload
-form(action='' method='POST' enctype='multipart/form-data')
-	.file-field.input-field
-	.btn.grey
-	span File
-	input(name='myImage' type='file')
-	.file-path-wrapper
-	input.file-path.validate(type='text')
-	button.btn(type='submit') Submit
-br
-img.responsive-img(src="<%= typeof file != 'undefined' ? file : '' %>")
-script(src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js')
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title File Uploads #{tittle}
+    //- link(rel='stylesheet' type='text/css' href='stylesheets/style.css') LINK DOESN'T WORK 
+    
+    //- Form style retrieved from: Multi-Step Form with Progress Bar using jQuery and CSS3
+    //-   https://www.sliderrevolution.com/resources/css-forms/
+    
+    style.
+      /*custom font*/
+      @import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+      /*basic reset*/
+      * {margin: 0; padding: 0;}
+
+      html {        
+        background: linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+        font-family:  "Montserrat", arial, verdana;
+      }
+
+      /*form styles*/
+      #msform {
+        width: 600px;
+        margin: 50px auto;
+        text-align: center;
+        position: relative;
+      }
+      fieldset {
+        background: white;
+        border: 0 none;
+        border-radius: 3px;
+        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+        padding: 20px 30px;
+        box-sizing: border-box;
+        width: 80%;
+        margin: 0 10%;
+      }
+
+      /*inputs*/
+      input {
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        font-family: montserrat;
+        color: #2C3E50;
+        font-size: 13px;
+      }
+      /*buttons*/
+      #msform .action-button {
+        width: 100px;
+        background: #27AE60;
+        color: white;
+        border: 0 none;
+        border-radius: 1px;
+        cursor: pointer;
+        padding: 10px;
+        margin: 10px 5px;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      #msform .action-button:hover, #msform .action-button:focus {
+        box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+      }
+      /*headings*/
+      .fs-title {
+        font-size: 15px;
+        text-transform: uppercase;
+        color: #2C3E50;
+        margin-bottom: 10px;
+      }
+      .fs-subtitle {
+        font-weight: normal;
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+  body
+
+    .formbox
+      form#msform(method='POST' action='' enctype='multipart/form-data')
+        fieldset
+          h2.fs-title Upload a file
+          h3.fs-subtitle Step 1: Type your name and 3-letter acronym
+          input(type="text" placeholder="First Name")
+          input(type="text" placeholder="Last Name")
+          input(type="text" placeholder="3-letter Acronym" maxlength="3")
+          h3.fs-subtitle Step 2: Select type of animal
+          select#animal_list.action-button(name='animal-list')
+            option(value='monk_parakeet') Monk Parakeet 
+            option(value='fiddler_crab') Fiddler Crab
+          h3.fs-subtitle Step 3: Type location coordinates 
+          input(type="number" placeholder="Latitude" max="90" min="-90")
+          input(type="number" placeholder="Longitude" max="180" min="-180")
+          h3.fs-subtitle Step 4: Select type of file
+          select#file_types.action-button(name="file-types")
+            option(valie='image') Image
+            option(value='audio') Audio
+            option(value='video') Video
+          h3.fs-subtitle Step 5: Upload the file
+          input(name='myImage' type='file')
+          h3.fs-subtitle Finally: Press Submit!
+          button.btn.action-button(type='submit') Submit
+
+
+    //- .input__form 
+    //-   form(method='POST' action='' enctype='multipart/form-data')
+    //-     .form__group
+    //-       label(for='fname') First Name: 
+    //-       input(type='text', placeholder='Name')
+    //-       <br>
+    //-       label(for='lname') Last Name: 
+    //-       input(type='text', placeholder='Last Name')
+    //-       <br>
+    //-       label(for='animal') Choose animal: 
+    //-       select#animal_list(name='animal-list')
+    //-         option(value='monk_parakeet') Monk Parakeet 
+    //-         option(value='fiddler_crab') Fiddler Crab
+    //-       <br>
+    //-       spam Location: 
+    //-       div
+    //-         label(for='latitude') Latitude: 
+    //-         input(type='number', placeholder='e.g. 40.771133') 
+    //-         <br>
+    //-         label(for='longitude') Longitude: 
+    //-         input(type='number', placeholder='e.g. -73.974187')
+    //-       <br>
+    //-       label(for='type_of_file') Type of file 
+    //-       select#file_types(name="file-types")
+    //-         option(valie='image') Image
+    //-         option(value='audio') Audio
+    //-         option(value='video') Video 
+    //-       <br>
+    //-       input(name='myImage' type='file')
+    //-       button.btn(type='submit') Submit
+  
+
+  //- .input__form 
+  //-   form(method='post' action='' enctype='multipart/form-data')
+  //-     label(for='fname') First Name: 
+  //-     input(type='text', placeholder='Name')
+  //-     <br>
+  //-     label(for='lname') Last Name: 
+  //-       input(type='text', placeholder='Last Name')
+  //-     <br>
+  //-     label(for='animal') Choose animal: 
+  //-     select(name='animal-list')
+  //-       option(value='monk_parakeet') Monk Parakeet 
+  //-       option(value='fiddler_crab') Fiddler Crab
+  //-     <br>
+  //-     spam Location: 
+  //-     div
+  //-       label(for='latitude') Latitude: 
+  //-       input(type='number', placeholder='e.g. 40.771133') 
+  //-       <br>
+  //-       label(for='longitude') Longitude: 
+  //-       input(type='number', placeholder='e.g. -73.974187')
+  //-     <br>
+  //-     label(for='type_of_file') Type of file 
+  //-     select(name="file-types")
+  //-       option(valie='image') Image
+  //-       option(value='audio') Audio
+  //-       option(value='video') Video 
+  //-     <br>
+  //-     input(name='myImage' type='file')
+  //-     input.btn(type='submit' value='Submit')
+          
+
+

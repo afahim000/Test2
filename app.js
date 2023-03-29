@@ -26,17 +26,22 @@ app.use('/users', usersRouter);
 app.use('/data', dataRouter);
 
 //jiohoij
-
+app.use('/upload', dataRouter);
 // ***** DELETE THIS ? *****
 // To display the pictures
-// gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine 
+// gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine
 // don't know if works
 //app.use('pictures', express.static(process.cwd() + 'pictures'));
 //app.use(express.static('pictures'))
 // app.use(express.static(path.join(__dirname, 'assets')))
 // app.use('assets', express.static(process.cwd() + 'assets'));
+<<<<<<< HEAD
 app.use('/images', express.static(__dirname + '/assets/images'));
 
+=======
+// app.use('/images', express.static(__dirname + '/assets/images'));
+// >>>>>>> d2b69c215fba76670044d63038363d2328c4877f
+>>>>>>> a7fd8cd374d7d75c9533e318c2458466f370d34b
 
 
 // To link button.pug page from _header.pug
