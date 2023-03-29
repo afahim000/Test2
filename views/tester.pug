@@ -23,7 +23,7 @@ html(lang="en")
       }
 
       /*form styles*/
-      #msform {
+      form {
         width: 600px;
         margin: 50px auto;
         text-align: center;
@@ -89,57 +89,61 @@ html(lang="en")
 
       option {
         background-color: white;
-        font-family: montserrat !important;
-        color: #2C3E50;
+        font-family: montserrat, arial, verdana !important;
+        color: #666;
       }
 
       /*Text area*/
       textarea {
-        resize: none;
+        resize: vertical;
+        max-height: 140px;
+        min-height: 60px;
       }
 
       /*headings*/
-      .fs-title {
+      h2 {
         font-size: 15px;
         text-transform: uppercase;
         color: #2C3E50;
         margin-bottom: 10px;
       }
-      .fs-subtitle {
+      h3 {
         font-weight: normal;
         font-size: 13px;
         color: #666;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        margin-top: 20px;
       }
 
   body
 
     .formbox
-      form#msform(method='POST' action='' enctype='multipart/form-data')
+      form(method='POST' action='' enctype='multipart/form-data')
         fieldset
-          h2.fs-title Upload a file
-          h3.fs-subtitle Step 1: Type your name and 3-letter acronym
+          h2 Upload a file
+          h3 Step 1: Type your name and 3-letter acronym
           input.input(type="text" placeholder="First Name" name='fname')
           input.input(type="text" placeholder="Last Name" name='lname')
-          input.input(type="text" placeholder="3-letter Acronym" maxlength="3" name='acronym')
-          h3.fs-subtitle Step 2: Select type of animal
+          input.input(type="text" placeholder="3-letter Acronym" maxlength="3" name='acronym' oninput="this.value = this.value.toUpperCase()")
+          h3 Step 2: Select type of animal
           select.input(name='animal-list')
-            option(value="empty") 
+            option(value="" selected disabled) 
             option(value="monk_parakeet") Monk Parakeet 
             option(value='fiddler_crab') Fiddler Crab
-          h3.fs-subtitle Step 3: Type location coordinates 
+          h3 Step 3: Type location coordinates 
           input.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude')
           input.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude')
-          h3.fs-subtitle Step 4: Select type of file
+          h3 Step 4: Select type of file
           select.input(name="file-types")
+            option(value="" selected disabled) 
             option(value='image') Image
             option(value='audio') Audio
             option(value='video') Video
-          h3.fs-subtitle Step 5: Upload the file
+          h3 Step 5: Upload the file
           input.input(name='file' type='file')
-          h3.fs-subtitle Step 6: Give comments -optional-
+          h3 Step 6: Give comments -optional-
           textarea.input(nate='comments' type='text' maxlength='300' placeholder='Comments')
-          h3.fs-subtitle Finally: Press Submit!
+          h3 Finally: Press Submit!
           button.action-button(type='submit') Submit
           
 
