@@ -5,6 +5,7 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title File Uploads #{tittle}
+    script(src='/javascripts/data-upload.js' type='text/javascript')
     //- link(rel='stylesheet' type='text/css' href='stylesheets/style.css') LINK DOESN'T WORK 
     
     //- Form style retrieved from: Multi-Step Form with Progress Bar using jQuery and CSS3
@@ -122,11 +123,11 @@ html(lang="en")
         fieldset
           h2 Upload a file
           h3 Step 1: Type your name and 3-letter acronym
-          input.input(type="text" placeholder="First Name" name='fname')
+          input#fname.input(type="text" placeholder="First Name" name='fname')
           input.input(type="text" placeholder="Last Name" name='lname')
           input.input(type="text" placeholder="3-letter Acronym" maxlength="3" name='acronym' oninput="this.value = this.value.toUpperCase()")
           h3 Step 2: Select type of animal
-          select.input(name='animal-list')
+          select#animal.input(name='animal-list')
             option(value="" selected disabled) 
             option(value="monk_parakeet") Monk Parakeet 
             option(value='fiddler_crab') Fiddler Crab

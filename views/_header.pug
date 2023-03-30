@@ -13,23 +13,19 @@ header.header
       li.nav__item 
         a.nav__link.nav__link--btn.btn--show-modal(href='#') Log In
 
-  .header__tittle 
+  .header__title 
     h1 
-      span.highlight Did</span> you<br>
+      span.highlight Did
+      | you<br>
       span.highlight Know?
     
     h4 There are Monk Parakeet and Fiddle Crabs in New York City
     button.btn--text.btn--scroll-to Learn more &DownArrow;
-    .images
-      img.header__img(src='/images/hero.png' alt='Minimalist bird items' style='width: 150px')
-      img.header__img(src='/assets/images/Fiddler-Crabs.jpg' alt='Minimalist crabs items' style='width: 150px')
+    //- .images
+    img.header__img(src='/images/hero.png' alt='Minimalist bird items')
+    img(src='images/Fiddler-Crabs.jpg' alt='Minimalist crabs items')
   
-  nav.buttons 
-    a(href='data') Buttons
-
-    //- .buttons
-    //-   button.buttonAdd Add 
-    //-   button.buttonAnother Another
-    //-   button.buttonDelete Delete
+    nav.buttons 
+      a(href='data') Buttons
 
 
