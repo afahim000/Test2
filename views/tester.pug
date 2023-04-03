@@ -4,6 +4,7 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
     title File Uploads #{tittle}
     //- link(rel='stylesheet' type='text/css' href='stylesheets/style.css') LINK DOESN'T WORK 
     
@@ -16,7 +17,6 @@ html(lang="en")
 
       /*basic reset*/
       * {margin: 0; padding: 0;}
-
       html {        
         background: linear-gradient(rgba(94, 197, 118, 0.7), rgba(255, 203, 3, 0.7));
         font-family: montserrat, arial, verdana;
@@ -115,32 +115,110 @@ html(lang="en")
   body
 
     .formbox
-      form#msform(method='POST' action='' enctype='multipart/form-data')
+      form#msform(onSubmit = 'return true' method='POST' action='' enctype='multipart/form-data')
         fieldset
           h2.fs-title Upload a file
+ 
           h3.fs-subtitle Step 1: Type your name and 3-letter acronym
-          input.input(type="text" placeholder="First Name" name='fname')
-          input.input(type="text" placeholder="Last Name" name='lname')
-          input.input(type="text" placeholder="3-letter Acronym" maxlength="3" name='acronym')
+          input#fname.input(type="text" placeholder="First Name" name="fname")
+          input#lname.input(type="text" placeholder="Last Name" name='lname')
+          input#acronym.input(type="text" placeholder="3-letter Acronym" maxlength="3" name='acronym')
           h3.fs-subtitle Step 2: Select type of animal
-          select.input(name='animal-list')
+          select#animal.input(name='animallist')
             option(value="empty") 
             option(value="monk_parakeet") Monk Parakeet 
             option(value='fiddler_crab') Fiddler Crab
           h3.fs-subtitle Step 3: Type location coordinates 
-          input.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude')
-          input.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude')
+          input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude')
+          input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude')
           h3.fs-subtitle Step 4: Select type of file
-          select.input(name="file-types")
+          select#filename.input(name="filetypes" placeholder = "file types")
             option(value='image') Image
             option(value='audio') Audio
             option(value='video') Video
           h3.fs-subtitle Step 5: Upload the file
-          input.input(name='file' type='file')
+          input#upload.input(name='file' type='file' placeholder = 'select file')
           h3.fs-subtitle Step 6: Give comments -optional-
           textarea.input(nate='comments' type='text' maxlength='300' placeholder='Comments')
           h3.fs-subtitle Finally: Press Submit!
-          button.action-button(type='submit') Submit
-          
+          #incomplete
+          button#action-button.action-button(type='submit') Submit
+
+    script(type='text/javascript' defer = '').
+       const firstName = document.getElementById('fname');
+       const lastName = document.getElementById('lname');
+       const animal= document.getElementById('animal');
+       const filename = document.getElementById('filename');
+       const upload = document.getElementById('upload');
+       const submit = document.getElementById('action-button');
+       const inputs = document.querySelectorAll('.input');
+       const form = document.getElementById('msform');
+       const latitude = document.getElementById('latitude');
+       const longitude = document.getElementById('longitude');
+       const incomplete = document.getElementById('incomplete');
+       const errors = false;
+       form.addEventListener('submit', (e)=>{
+       //incomplete.hidden = 'true';
+       const messages = [];
+       		if(firstName.value === null || firstName.value === '')
+       		 {
+       		  e.preventDefault();
+       		  messages.push('*First name Required');
+       		 }
+       		if(lastName.value === null || lastName.value === '')
+       		 {
+       		  e.preventDefault();
+       		  messages.push('*Last name Required');
+       		 }
+       		 if(latitude.value === null || latitude.value === '')
+       		 {
+       		  e.preventDefault();
+       		  messages.push('*latitude Required');
+       		 }
+       		 if(longitude.value === null || longitude.value === '')
+       		 {
+       		  e.preventDefault();
+       		  messages.push('*longitude Required');
+       		 }
+       		 if(upload.value === null || upload.value === '')
+       		 {
+       		  e.preventDefault();
+       		  messages.push('*No file attached');
+       		 }
+       		 if(animal.value === null || animal.value === '')
+       		 {
+       		  e.preventDefault();
+       		  messages.push('*Animal name required');
+       		 }
+       		 if(filename.value === null || filename.value === '')
+       		 {
+       		  e.preventDefault();
+       		  messages.push('*File type required (step 4)');
+       		  
+       		 }
+            const fileVal = filename.value;
+            const uploadVal = upload.value;
+            const extension = upload.value.slice((Math.max(0, upload.value.lastIndexOf(".")) || Infinity) + 1);
+            if(fileVal == 'image')
+            {
+            	if(extension != 'jpg' || extension != 'jpeg' || extension != 'png')
+            	{
+                  e.preventDefault();
+                  messages.push('Selected file type: Image does not correspond with attached file');
+            	}
+            }
+            if(messages.length > 0)
+            {
+                incomplete.innerText = messages.join(' \n');
+                //incomplete.removeAttribute = 'hidden';
+
+            }
+       		 	console.log('lol');
+       });
+           
+
+if errors
+ error.msg
+
 
 

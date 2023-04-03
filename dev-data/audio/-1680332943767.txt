@@ -1,0 +1,7 @@
+File paths
+
+Alejandros server -     "C:\Users\jaren\OneDrive\Desktop\BCR_SERVER"
+
+Local library project -    "C:\Users\jaren\OneDrive\Desktop\Local Library\express-localLibrary-tutorial"
+
+New server: "C:\Users\jaren\OneDrive\Desktop\BCR_SERVER_WEB"

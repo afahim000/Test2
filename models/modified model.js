@@ -24,13 +24,11 @@ const animalSchema = new Schema({
   {
   	first: {type: String, required: true},
     last: {type:String, required: false},
-    user: {type: Schema.Types.ObjectId, ref: "User", required: false}
   },
 
   date:
   {
   		type: Date,
-      required: true
   },
 
   location:
@@ -48,9 +46,9 @@ const animalSchema = new Schema({
       required: true
   },
 //Storing a media file here probably will require a media file schema.
-  MediaFile:
+  fileDirectory:
   {
-  	type: String
+    type:String
   },
 });
 //Virtual functions add a logical component to the Schema. Not stored in the database.

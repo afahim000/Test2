@@ -1,24 +1,57 @@
-const model = require('../models/modified model');
+const express = require('express');
+const animalSchema = require('../models/modified model');
 const path = require('path');
 const multer = require('multer');
-const { body, validationResult } = require("express-validator");
+const { check, validationResult } = require("express-validator");
+const textOnly = multer();
 
 const images = multer.diskStorage({
-	destination: './dev-data/img',
+	destination: function (req, file, callback){
+		if(req.body.filetypes === 'Images')
+		{
+			callback(null, './dev-data/img');
+		}
+		else if(req.body.filetypes === 'Video')
+		{
+			callback(null, './dev-data/video');
+		}
+		else
+		{
+			callback(null, './dev-data/audio');
+		}
+	}
+});
+
+const videos = multer.diskStorage({
+	destination: './dev-data/videos',
 	filename: function (req, file, callback) {
 		callback(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
 	}
 });
 
+const audio = multer.diskStorage({
+	destination: './dev-data/audio',
+	filename: function (req, file, callback) {
+		callback(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
+	}
+});
 
 const imgUpload = multer({
 	storage: images
 }).single('file');
 
+const videoUpload = multer({
+	storage: videos
+}).single('file');
+
+const audioUpload = multer({
+	storage: audio
+}).single('file');
+
 //const vidUpload;
 //const audioUpload;
 exports.getOptions = (req, res) => {
-	res.status(200).render('buttons', { title: 'buttons' });
+	res.status(200).render('buttons', { title: 'buttons'});
 };
 
 exports.queryOptionsGet = (req, res) => {
@@ -42,21 +75,41 @@ exports.queryOptionsPost = (req, res) => {
 
 exports.addDataPost = (req, res) => {
 
-body("fname", "First name required")
-	.trim().isLength({ min: 1 }).escape()
-
-	imgUpload(req, res, (err) => {
+		imgUpload(req, res, (err) => {
 		if (err) {
 			res.render('tester');
 			res.send('MEOWWWW!!!!');
 		}
 		else {
-			console.log(req.file);
-			res.send('test');
+			let fileLocation = req.file.destination;
+			const count = 4;
+			//const count = await animalSchema.countDocuments({});
+			console.log(count);
+			const data = new animalSchema({
+			id: count + 1,
+			animalName: req.body.animallist,
+			recorder: 
+			{
+				last: req.body.lname,
+				first: req.body.fname
+			},
+			location: 
+			{
+				latitude:req.body.latitude,
+				longitude: req.body.longitude,
+			},
+			mediaType: req.body.filetypes,
+			fileDirectory: `../${fileLocation}./${req.file.filename}`
+			});
+			//data.save();
+			//res.send('test');
 
-		}
-	})
+			}
+									});
+
+		
 };
+
 exports.deletePost = (req, res) => {
 	res.send("Not Implemented yet");
 };
