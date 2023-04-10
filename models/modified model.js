@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 //A Schema is like a blueprint
-const Schema = mongoose.Schema;
 //Beginning of the schema
 //This defines an invidual scoring of an animal. It consists of the attributes defined below
-const animalSchema = new Schema({
+const animalSchema = new mongoose.Schema({
 //The unique identifier for the specific instance of the animal. This number is incremented based on the size of the 
 //database. eg. the first entry is 1, the 100th entry is 100 etc.
  id: {

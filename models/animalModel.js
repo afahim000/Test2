@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //A Schema is like a blueprint
-const animalSchema = new mongoose.Schema({
+const animalSchemas = new mongoose.Schema({
   id: {
     type: Number,
     unique: [true, 'Need an ID number'],

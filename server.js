@@ -19,10 +19,10 @@ const app = require('./app');
 // );
 
 mongoose.set('strictQuery', false);
-const mongoDB = "mongodb+srv://abrarfahim100:Sakib43st@afahim000.jquadwy.mongodb.net/local_library?retryWrites=true&w=majority";
+const mongoDB = "mongodb+srv://abrar_fahim20:Sakib43st@cluster0.n9faamf.mongodb.net/?retryWrites=true&w=majority";
 
 //connect to the database with mongoose
-mongoose.connect(DB).then(() => {
+mongoose.connect(mongoDB).then(() => {
   if (process.env.NODE_ENV === 'development')
     console.log('You are connected to the MongoDB database\n');
 });

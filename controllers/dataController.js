@@ -83,7 +83,6 @@ exports.addDataPost = (req, res) => {
 		else {
 			let fileLocation = req.file.destination;
 			const count = 4;
-			//const count = await animalSchema.countDocuments({});
 			console.log(count);
 			const data = new animalSchema({
 			id: count + 1,
@@ -101,7 +100,7 @@ exports.addDataPost = (req, res) => {
 			mediaType: req.body.filetypes,
 			fileDirectory: `../${fileLocation}./${req.file.filename}`
 			});
-			//data.save();
+			data.save();
 			//res.send('test');
 
 			}
