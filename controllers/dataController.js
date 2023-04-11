@@ -52,7 +52,7 @@ exports.getOptions = (req, res) => {
 };
 
 exports.queryOptionsGet = (req, res) => {
-	res.send("Not Implemented yet");
+	res.status(200).render('search', { title: 'Search' });
 };
 
 exports.deleteGet = (req, res) => {

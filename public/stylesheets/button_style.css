@@ -25,6 +25,19 @@ html {
 	justify-content: center;
 }
 
+.back {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.back a {
+	background: var(--color-secondary);
+}
+
+.back a:hover {
+	background: var(--color-secondary-opacity);
+}
+
 .buttons {
 	width: 500px;
 	display: flex;
