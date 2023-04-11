@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = require('mongoose').Schema;
 //A Schema is like a blueprint
 //Beginning of the schema
 //This defines an invidual scoring of an animal. It consists of the attributes defined below
@@ -24,6 +25,9 @@ const animalSchema = new mongoose.Schema({
   date:
   {
   		type: Date,
+      month: Number,
+      day: Number,
+      year: Number,
   },
 
   location:
@@ -31,6 +35,8 @@ const animalSchema = new mongoose.Schema({
     country: String,
     state: String,
     city: String,
+    street: Schema.Types.Mixed,
+    zipcode: Number, 
     latitude: Number,
     longitude: Number,
   },
@@ -45,7 +51,10 @@ const animalSchema = new mongoose.Schema({
   {
     type:String
   },
+
+  comments: String,
 });
+
 //Virtual functions add a logical component to the Schema. Not stored in the database.
 animalSchema.virtual('Date').get(function(){
   return this.date.toLocaleString();
