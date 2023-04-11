@@ -5,11 +5,7 @@ const mongoose = require('mongoose');
 const animalSchema = new mongoose.Schema({
 //The unique identifier for the specific instance of the animal. This number is incremented based on the size of the 
 //database. eg. the first entry is 1, the 100th entry is 100 etc.
- id: {
-    type: Number,
-    unique: [true, 'Need an ID number'],
-  },
-
+  id: Schema.Types.ObjectId,
 //Name of the animal
   animalName:
   {
@@ -24,7 +20,7 @@ const animalSchema = new mongoose.Schema({
   	first: {type: String, required: true},
     last: {type:String, required: false},
   },
-
+//Will contain the time as well
   date:
   {
   		type: Date,
@@ -32,11 +28,11 @@ const animalSchema = new mongoose.Schema({
 
   location:
   {
-    Country: String,
-    State: String,
+    country: String,
+    state: String,
     city: String,
     latitude: Number,
-    Longitude: Number,
+    longitude: Number,
   },
 //Either video , audio or image
   mediaType:

@@ -2,24 +2,30 @@ const express = require('express');
 const animalSchema = require('../models/modified model');
 const path = require('path');
 const multer = require('multer');
+const {MongoClient} = require('mongodb');
 const { check, validationResult } = require("express-validator");
 const textOnly = multer();
 
 const images = multer.diskStorage({
+
 	destination: function (req, file, callback){
-		if(req.body.filetypes === 'Images')
+		if(req.body.filetypes === 'images')
 		{
 			callback(null, './dev-data/img');
 		}
-		else if(req.body.filetypes === 'Video')
+		else if(req.body.filetypes === 'video')
 		{
-			callback(null, './dev-data/video');
+			callback(null, './dev-data/videos');
 		}
 		else
 		{
 			callback(null, './dev-data/audio');
 		}
+	},
+	filename: function (req, file, callback) {
+		callback(null, file.fieldname = '-' + Date.now() + path.extname(file.originalname));
 	}
+
 });
 
 const videos = multer.diskStorage({
@@ -82,7 +88,7 @@ exports.addDataPost = (req, res) => {
 		}
 		else {
 			let fileLocation = req.file.destination;
-			const count = 4;
+			const count = Math.random()*10000;
 			console.log(count);
 			const data = new animalSchema({
 			id: count + 1,
@@ -95,10 +101,10 @@ exports.addDataPost = (req, res) => {
 			location: 
 			{
 				latitude:req.body.latitude,
-				longitude: req.body.longitude,
+				longitude: req.body.longitude
 			},
 			mediaType: req.body.filetypes,
-			fileDirectory: `../${fileLocation}./${req.file.filename}`
+			fileDirectory: `.${fileLocation}/${req.file.filename}`
 			});
 			data.save();
 			//res.send('test');
