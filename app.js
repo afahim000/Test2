@@ -7,7 +7,7 @@ var dataRouter = require('./controllers/dataRouter');
 var viewsRouter = require('./routes/viewsRoutes');
 var usersRouter = require('./routes/users');
 var app = express();
-
+const mongoose = require('mongoose');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,8 +35,12 @@ app.use('/upload', dataRouter);
 //app.use(express.static('pictures'))
 // app.use(express.static(path.join(__dirname, 'assets')))
 // app.use('assets', express.static(process.cwd() + 'assets'));
+
+app.use('/images', express.static(__dirname + '/assets/images'));
+
+
 // app.use('/images', express.static(__dirname + '/assets/images'));
-// >>>>>>> d2b69c215fba76670044d63038363d2328c4877f
+
 
 
 // To link button.pug page from _header.pug
@@ -62,5 +66,12 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+mongoose.set('strictQuery', false);
+const mongoDB = "mongodb+srv://abrar_fahim20:Sakib43st@cluster0.n9faamf.mongodb.net/?retryWrites=true&w=majority";
 
+//connect to the database with mongoose
+main().catch(err => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
 module.exports = app;

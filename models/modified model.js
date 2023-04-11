@@ -1,67 +1,59 @@
 const mongoose = require('mongoose');
 //A Schema is like a blueprint
-const Schema = mongoose.Schema;
 //Beginning of the schema
 //This defines an invidual scoring of an animal. It consists of the attributes defined below
-const animalSchema = new Schema({
-  //The unique identifier for the specific instance of the animal. This number is incremented based on the size of the 
-  //database. eg. the first entry is 1, the 100th entry is 100 etc.
-  id: {
-    type: Number,
-    unique: [true, 'Need an ID number'],
-  },
-
-  //Name of the animal
+const animalSchema = new mongoose.Schema({
+//The unique identifier for the specific instance of the animal. This number is incremented based on the size of the 
+//database. eg. the first entry is 1, the 100th entry is 100 etc.
+  id: Schema.Types.ObjectId,
+//Name of the animal
   animalName:
   {
-    type: String,
+  	type: String,
     required: true,
     default: 'N/A'
   },
-  //The recorder will have a first and last name. Also contains a reference attribute to the user schema which is any member 
-  //in the BCR lab. This field is not required to create an instance since there can be data collected from the webscraper
-  //Recorder - the person sharing the file
+//The recorder will have a first and last name. Also contains a reference attribute to the user schema which is any member 
+//in the BCR lab. This field is not required to create an instance since there can be data collected from the webscraper
   recorder:
   {
-    first: { type: String, required: true },
-    last: { type: String, required: false },
-    user: { type: Schema.Types.ObjectId, ref: "User", required: false }
+  	first: {type: String, required: true},
+    last: {type:String, required: false},
   },
-
+//Will contain the time as well
   date:
   {
-    type: Date,
-    required: true
+  		type: Date,
   },
 
   location:
   {
-    Country: String,
-    State: String,
+    country: String,
+    state: String,
     city: String,
     latitude: Number,
-    Longitude: Number,
+    longitude: Number,
   },
-  //Either video , audio or image
+//Either video , audio or image
   mediaType:
   {
-    type: String,
-    required: true
+  		type: String,
+      required: true
   },
-  //Storing a media file here probably will require a media file schema.
-  MediaFile:
+//Storing a media file here probably will require a media file schema.
+  fileDirectory:
   {
-    type: String
+    type:String
   },
 });
 //Virtual functions add a logical component to the Schema. Not stored in the database.
-animalSchema.virtual('Date').get(function () {
+animalSchema.virtual('Date').get(function(){
   return this.date.toLocaleString();
 });
 //Still a work in progress. Might consider a nest location schema which can validate with the longitude and latitude of 
 //the given data and return the nest number if the data corresponds to a nest location. 
 //
-animalSchema.virtual('Location').get(function () {
+animalSchema.virtual('Location').get(function(){
   return `longitude: ${this.location.longitude} latitude: ${this.location.latitude}`
 });
 //Stores the schema as an ODM (Object Data Model)
