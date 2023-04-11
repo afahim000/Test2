@@ -2,9 +2,6 @@ const express = require('express');
 const animalSchema = require('../models/modified model');
 const path = require('path');
 const multer = require('multer');
-const {MongoClient} = require('mongodb');
-const { check, validationResult } = require("express-validator");
-const textOnly = multer();
 
 const images = multer.diskStorage({
 
@@ -76,7 +73,54 @@ exports.addDataGet = (req, res) =>
 };
 
 exports.queryOptionsPost = (req, res) => {
-	res.send("Not Implemented yet");
+	let name;
+	let startDate;
+	let endDate;
+	let latitude;
+	let longitude;
+	if(!req.body.animallist)
+	{
+		name = /.+/;
+	}
+	else
+	{
+		name = req.body.animallist
+	}
+	if(!req.body.startDate)
+	{
+		startDate = /.+/;
+	}
+	else
+	{
+		startDate = req.body.startDate.split('-');
+	}
+	if(!req.body.endDate)
+	{
+		endDate = /.+/;
+	}
+	else
+	{
+		endDate = req.body.endDate.split('-')
+	}
+	if(!req.body.latitude)
+	{
+		latitude = /.*/;
+	}
+	else
+	{
+		latitude = req.body.latitude;
+	}
+	if(!req.body.longitude)
+	{
+		longitude = /.*/
+	}
+	else
+	{
+		longitude = req.body.longitude;
+	}
+	let query = animalSchema.find({animalName: name,  });
+	
+	
 };
 
 exports.addDataPost = (req, res) => {
@@ -88,10 +132,7 @@ exports.addDataPost = (req, res) => {
 		}
 		else {
 			let fileLocation = req.file.destination;
-			const count = Math.random()*10000;
-			console.log(count);
 			const data = new animalSchema({
-			id: count + 1,
 			animalName: req.body.animallist,
 			recorder: 
 			{
