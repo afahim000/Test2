@@ -14,23 +14,51 @@ html(lang="en")
     style.
       /*custom font*/
       @import url(https://fonts.googleapis.com/css?family=Montserrat);
-      
-      /*basic reset*/
-      * {margin: 0; padding: 0;}
+      /*Color palete*/
+      :root {
+        --color-secondary:  #ffcb03;
+      }
         
       html {        
         background: linear-gradient(rgba(94, 197, 118, 0.7), rgba(255, 203, 3, 0.7));
         font-family: montserrat, arial, verdana;
       }
-        
+
+      /*Back Button*/
+      .back {
+        display: flex;
+        justify-content: flex-start;
+      }
+      .btn {
+        padding: 0.8rem 2.5rem;
+        background-color: var(--color-secondary);
+        border: 0;
+        font-size: medium;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      .btn:hover {
+        background-color: var(--color-secondary-opacity);
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      h1 { 
+        text-align: center;
+        margin-top: 0;
+      }
+
       /*form styles*/
+      .formbox {
+        display: flex;
+        justify-content: center;
+      }
       form {
         width: 600px;
-        margin: 50px auto;
         text-align: center;
-        position: relative;
-      }
-        
+        display: flex;
+        justify-content: center;
+      } 
       fieldset {
         background: white;
         border: 0 none;
@@ -38,8 +66,7 @@ html(lang="en")
         box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
         padding: 20px 30px;
         box-sizing: border-box;
-        width: 80%;
-        margin: 0 10%;
+        width: 530px;
       }
       
       /*inputs*/
@@ -121,36 +148,58 @@ html(lang="en")
         color: red;
       }
 
-  body
+      .twoInputs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 5px;
+      }
+      #acronym { width: 64px; }
 
+      /*For time input elements - works better in Chrome*/
+      input[type='time']:before {
+        content: attr(placeholder);
+        -moz-appearance: none;
+      }
+      
+
+  body
+    .back
+      a.btn(href='../data') Back
+    h1 Upload a file
     .formbox
       form#msform(onSubmit = 'return true' method='POST' action='' enctype='multipart/form-data')
         fieldset
-          h2.fs-title Upload a file
- 
-          h3.fs-subtitle Step 1: Type your name and 3-letter acronym
-          input#fname.input(type="text" placeholder="First Name" name="fname")
-          input#lname.input(type="text" placeholder="Last Name" name='lname')
-          input#acronym.input(type="text" placeholder="TLA" maxlength="3" name='acronym')
+          h3.fs-subtitle Step 1: Insert your name and 3-letter acronym
+          .twoInputs
+            input#fname.input(type="text" placeholder="First Name" name="fname")
+            input#lname.input(type="text" placeholder="Last Name" name='lname')
+            input#acronym.input(type="text" placeholder="TLA" maxlength="3" name='acronym')
           h3.fs-subtitle Step 2: Select type of animal
           select#animal.input(name='animallist')
             option(value="" selected disabled)
             option(value="monk_parakeet") Monk Parakeet
             option(value='fiddler_crab') Fiddler Crab
-          h3.fs-subtitle Step 3: Type location coordinates 
-          input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude')
-          input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude')
-          h3.fs-subtitle Step 4: Type address of sighting
+          h3.fs-subtitle Step 3: Insert location coordinates 
+          .twoInputs
+            input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude')
+            input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude')
+          h3.fs-subtitle Step 4: Insert address of sighting
           input#address.input(type='text' placeholder='Ex.: 123 N. Main St., Brooklyn, NY 12345' name='address')
-          h3.fs-subtitle Step 5: Select type of file
+          h3.fs-subtitle Step 5: Date and start/end time of sighting 
+          .twoInputs
+            input#sdate.input(type='date' name='sdate')
+            input#stime.input(type='time' name='stime' placeholder='Start')
+            input#etime.input(type='time' name='etime' placeholder='End')
+          h3.fs-subtitle Step 6: Select type of file
           select#filename.input(name="filetypes" placeholder = "file types")
             option(value='' selected disabled)
             option(value='image') Image
             option(value='audio') Audio
             option(value='video') Video
-          h3.fs-subtitle Step 5: Upload the file
+          h3.fs-subtitle Step 7: Upload the file
           input#upload.input(name='file' type='file' placeholder = 'select file')
-          h3.fs-subtitle Step 7: Give comments -optional-
+          h3.fs-subtitle Step 8: Give comments -optional-
           textarea.input(nate='comments' type='text' maxlength='300' placeholder='Comments')
           h3.fs-subtitle Finally: Press Submit!
           #incomplete
@@ -169,6 +218,9 @@ html(lang="en")
       const latitude = document.getElementById('latitude');
       const longitude = document.getElementById('longitude');
       const address = document.getElementById('address');
+      const sdate = document.getElementById('sdate');
+      const stime = document.getElementById('stime');
+      const etime = document.getElementById('etime');
       const incomplete = document.getElementById('incomplete');
       const errors = false;
 
@@ -176,60 +228,67 @@ html(lang="en")
       // Input validation
       // ----------------
       form.addEventListener('submit', (e)=>{
-       //incomplete.hidden = 'true';
+        //Stores messages for incomplete fields
         const messages = [];
-        if(!/[a-zA-Z .]+/.test(firstName.value))
+        
+        // Evaluate 'fname' and 'lname' input fields
+        if(!/[a-zA-Z .]+/.test(firstName.value) || !/[a-zA-Z .]+/.test(lastName.value))
         {
           e.preventDefault();
-          messages.push('*First name Required. Only alphabetic characters or a dot (.)');
+          messages.push('*First and Last Name Required. Only alphabetic characters or a dot (.) - Step 1');
         }
-        if(!/[a-zA-Z .]+/.test(lastName.value))
-        {
-          e.preventDefault();
-          messages.push('*Last name Required.  Only alphabetic characters or a dot (.)');
-        }
-        // For TLA input
+        // Evaluate 'acronym' input field
         if (!/[A-Z]{3}/.test(acronym.value))
         {
           e.preventDefault();
-          messages.push('*TLA - Type 3 capital letters')
+          messages.push('*TLA - Type 3 capital letters - Step 1')
         }
-        if(latitude.value === null || latitude.value === '')
-        {
-          e.preventDefault();
-          messages.push('*Latitude Required');
-        }
-        if(longitude.value === null || longitude.value === '')
-        {
-          e.preventDefault();
-          messages.push('*Longitude Required');
-        }
-        // Using Regular Expressions to validate the correct format of the address
-        // Ex. 4325 W. Palm Beach Rd., San Francisco, CA 94116
-        if(!/^(\d*) ([a-zA-Z .]* [a-zA-Z]{2}.), ([a-zA-Z ]*), ([A-Z]{2}) (\d{5})$/.test(address.value))
-        {
-          e.preventDefault();
-          messages.push('*Wrong address format.');
-        }
-        if(upload.value === null || upload.value === '')
-        {
-         e.preventDefault();
-         messages.push('*No file attached');
-        }
+        // Evaluate 'animal' input field
         if(animal.value === null || animal.value === '')
         {
-         e.preventDefault();
-         messages.push('*Animal name required');
+          e.preventDefault();
+          messages.push('*Animal name required - Step 2');
         }
+        // Evaluate 'latitude' and 'longitude' input fields
+        if(latitude.value === '' || longitude.value === '')
+        {
+          e.preventDefault();
+          messages.push('*Latitude and Longitude Required - Step 3');
+        }
+        // Evaluate 'address' input field
+        // Using Regular Expressions to validate the correct format of the address
+        // Ex. 4325 W. Palm Beach Rd., San Francisco, CA 94116
+        const addressF = /^(\d* [a-zA-Z .]*), ([a-zA-Z ]*), ([A-Z]{2}) (\d{5})$/;
+        if(!addressF.test(address.value))
+        {
+          e.preventDefault();
+          messages.push('*Wrong address format - Step 4');
+        }
+        // Evaluate 'sdate' 'stime' and 'etime' input fields
+        if(sdate.value === '' || stime.value === '' || etime.value === '')
+        {
+          e.preventDefault();
+          messages.push('*Date and time Required - Step 5');
+        }
+        // Evaluate 'file name' input field
         if(filename.value === null || filename.value === '')
         {
           e.preventDefault();
-          messages.push('*File type required (step 4)'); 
+          messages.push('*File type required - Step 6'); 
         }
+        // Evaluate 'upload' input field
+        if(upload.value === null || upload.value === '')
+        {
+          e.preventDefault();
+          messages.push('*No file attached - Step 7');
+        }
+
+
         
         const fileVal = filename.value;
         const uploadVal = upload.value;
-        const extension = upload.value.slice((Math.max(0, upload.value.lastIndexOf(".")) || Infinity) + 1);
+        let extension = upload.value.slice((Math.max(0, upload.value.lastIndexOf(".")) || Infinity) + 1);
+        extension = extension.toLowerCase()
         if(fileVal == 'image')
         {
         if(extension != 'jpg' || extension != 'jpeg' || extension != 'png')

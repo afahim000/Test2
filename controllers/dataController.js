@@ -2,9 +2,6 @@ const express = require('express');
 const animalSchema = require('../models/modified model');
 const path = require('path');
 const multer = require('multer');
-const { MongoClient } = require('mongodb');
-const { check, validationResult } = require("express-validator");
-const textOnly = multer();
 
 const images = multer.diskStorage({
 
@@ -72,7 +69,44 @@ exports.addDataGet = (req, res) => {
 };
 
 exports.queryOptionsPost = (req, res) => {
-	res.send("Not Implemented yet");
+	let name;
+	let startDate;
+	let endDate;
+	let latitude;
+	let longitude;
+	if (!req.body.animallist) {
+		name = /.+/;
+	}
+	else {
+		name = req.body.animallist
+	}
+	if (!req.body.startDate) {
+		startDate = /.+/;
+	}
+	else {
+		startDate = req.body.startDate.split('-');
+	}
+	if (!req.body.endDate) {
+		endDate = /.+/;
+	}
+	else {
+		endDate = req.body.endDate.split('-')
+	}
+	if (!req.body.latitude) {
+		latitude = /.*/;
+	}
+	else {
+		latitude = req.body.latitude;
+	}
+	if (!req.body.longitude) {
+		longitude = /.*/
+	}
+	else {
+		longitude = req.body.longitude;
+	}
+	let query = animalSchema.find({ animalName: name, });
+
+
 };
 
 exports.addDataPost = (req, res) => {
@@ -84,39 +118,17 @@ exports.addDataPost = (req, res) => {
 		}
 		else {
 			let fileLocation = req.file.destination;
-
-			// Collecting address information and storing it in the arrAdd
-			// const addressF = /^(\d* [a-zA-Z .]*), ([a-zA-Z ]*), ([A-Z]{2}) (\d{5})$/;
-			// const arrAdd = req.body.address.match(addressF);
-
-			// Creating date object
-			// const startDate = new Date(`${req.body.sdate}T${req.body.stime}`);
-			// const endDate = new Date(`${req.body.sdate}T${req.body.etime}`);
-
-			// Creating a new data entry following the schema in the file 'models/modified model.js'
 			const data = new animalSchema({
-
 				animalName: req.body.animallist,
 				recorder:
 				{
 					last: req.body.lname,
 					first: req.body.fname
 				},
-				// date:
-				// {
-				// 	start: startDate,
-				// 	end: endDate
-				// },
 				location:
 				{
-					//country: 'USA',
-					//state: arrAdd[3],
-					//city: arrAdd[2],
-					//street: arrAdd[1],
-					//zipcode: arrAdd[4],
 					latitude: req.body.latitude,
 					longitude: req.body.longitude
-
 				},
 				mediaType: req.body.filetypes,
 				fileDirectory: `.${fileLocation}/${req.file.filename}`

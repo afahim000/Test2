@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = require('mongoose').Schema;
-
 //A Schema is like a blueprint
 //Beginning of the schema
 //This defines an invidual scoring of an animal. It consists of the attributes defined below
