@@ -206,11 +206,6 @@ html(lang="en")
         }
         // Using Regular Expressions to validate the correct format of the address
         // Ex. 4325 W. Palm Beach Rd., San Francisco, CA 94116
-        if(!/^(\d*) ([a-zA-Z .]* [a-zA-Z]{2}.), ([a-zA-Z ]*), ([A-Z]{2}) (\d{5})$/.test(address.value))
-        {
-          e.preventDefault();
-          messages.push('*Wrong address format.');
-        }
         if(upload.value === null || upload.value === '')
         {
          e.preventDefault();
