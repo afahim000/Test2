@@ -119,6 +119,7 @@ exports.addDataPost = (req, res) => {
 		else {
 			let fileLocation = req.file.destination;
 			const data = new animalSchema({
+				id: count + 1,
 				animalName: req.body.animallist,
 				recorder:
 				{

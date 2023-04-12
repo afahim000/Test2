@@ -32,8 +32,8 @@ const animalSchema = new mongoose.Schema({
     country: String,
     state: String,
     city: String,
-    street: String,
-    zipcode: String,
+    street: Schema.Types.Mixed,
+    zipcode: Number,
     latitude: Number,
     longitude: Number,
   },
@@ -48,6 +48,8 @@ const animalSchema = new mongoose.Schema({
   {
     type: String
   },
+
+  comments: String,
 });
 
 //Virtual functions add a logical component to the Schema. Not stored in the database.
