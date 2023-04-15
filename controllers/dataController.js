@@ -76,51 +76,57 @@ exports.queryOptionsPost = (req, res) => {
 	let name;
 	let startDate;
 	let endDate;
-	let latitude;
+	let lat;
 	let longitude;
+	let query = animalSchema.find({});
 	if(!req.body.animallist)
 	{
-		name = /.+/;
 	}
 	else
 	{
 		name = req.body.animallist
+		query = animalSchema.find({animalName: name});
+
 	}
 	if(!req.body.startDate)
 	{
-		startDate = /.+/;
+		startDate = '1000-12-31';
 	}
 	else
 	{
-		startDate = req.body.startDate.split('-');
+		startDate = req.body.startDate;
 	}
 	if(!req.body.endDate)
 	{
-		endDate = /.+/;
+		endDate = '3000-12-31';
 	}
 	else
 	{
-		endDate = req.body.endDate.split('-')
+		endDate = req.body.endDate;
 	}
+	query.find({ date:{"$gte": `${startDate}T00:00:00.000Z`, "$lte":
+	`${endDate}T00:00:00.000Z`}});
 	if(!req.body.latitude)
 	{
-		latitude = /.*/;
 	}
 	else
 	{
-		latitude = req.body.latitude;
+		lat = req.body.latitude;
+		query.find({ 'location.latitude' : lat});
 	}
 	if(!req.body.longitude)
 	{
-		longitude = /.*/
+		longitude = {$regex: /.*/}
 	}
 	else
 	{
 		longitude = req.body.longitude;
+		query.find({ 'location.longitude' : longitude});
 	}
-	let query = animalSchema.find({animalName: name,  });
-	
-	
+	query = query.then((response) => {console.log(response);
+		res.render('search', {data: response} )});
+
+
 };
 
 exports.addDataPost = (req, res) => {
@@ -131,8 +137,12 @@ exports.addDataPost = (req, res) => {
 			res.send('MEOWWWW!!!!');
 		}
 		else {
+			console.log(req.body.stime);
+			const time = req.body.stime;
+			const YMD = req.body.sdate;
 			let fileLocation = req.file.destination;
 			const data = new animalSchema({
+			comments: req.body.comments,
 			animalName: req.body.animallist,
 			recorder: 
 			{
@@ -141,9 +151,11 @@ exports.addDataPost = (req, res) => {
 			},
 			location: 
 			{
+				address: req.body.address,
 				latitude:req.body.latitude,
 				longitude: req.body.longitude
 			},
+			date: new Date(`${YMD}T${time}:00`),
 			mediaType: req.body.filetypes,
 			fileDirectory: `.${fileLocation}/${req.file.filename}`
 			});

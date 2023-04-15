@@ -38,6 +38,10 @@ html {
 	background: var(--color-secondary-opacity);
 }
 
+h1 {
+	margin-top: 0;
+}
+
 .buttons {
 	width: 500px;
 	display: flex;
