@@ -173,9 +173,9 @@ html(lang="en")
         fieldset
           h3.fs-subtitle Step 1: Insert your name and 3-letter acronym
           .twoInputs
-            input#fname.input(type="text" placeholder="First Name" name="fname")
-            input#lname.input(type="text" placeholder="Last Name" name='lname')
-            input#acronym.input(type="text" placeholder="TLA" maxlength="3" name='acronym')
+            input#fname.input(type="text" placeholder="First Name" name="fname" value = 'bob')
+            input#lname.input(type="text" placeholder="Last Name" name='lname' value = 'maria')
+            input#acronym.input(type="text" placeholder="TLA" maxlength="3" name='acronym' value = 'DHF')
           h3.fs-subtitle Step 2: Select type of animal
           select#animal.input(name='animallist')
             option(value="" selected disabled)
@@ -183,13 +183,13 @@ html(lang="en")
             option(value='fiddler_crab') Fiddler Crab
           h3.fs-subtitle Step 3: Insert location coordinates 
           .twoInputs
-            input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude')
-            input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude')
+            input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude' value = '12')
+            input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude' value = '12')
           h3.fs-subtitle Step 4: Insert address of sighting
-          input#address.input(type='text' placeholder='Ex.: 123 N. Main St., Brooklyn, NY 12345' name='address')
+          input#address.input(type='text' placeholder='Ex.: 123 N. Main St., Brooklyn, NY 12345' name='address' value = '123 N. Main St., Brooklyn, NY 12345')
           h3.fs-subtitle Step 5: Date and start/end time of sighting 
           .twoInputs
-            input#sdate.input(type='date' name='sdate')
+            input#sdate.input(type='date' name='sdate' value = '2022-08-16')
             input#stime.input(type='time' name='stime' placeholder='Start')
             input#etime.input(type='time' name='etime' placeholder='End')
           h3.fs-subtitle Step 6: Select type of file
@@ -201,7 +201,7 @@ html(lang="en")
           h3.fs-subtitle Step 7: Upload the file
           input#upload.input(name='file' type='file' placeholder = 'select file')
           h3.fs-subtitle Step 8: Give comments -optional-
-          textarea.input(nate='comments' type='text' maxlength='300' placeholder='Comments')
+          textarea.input(name='comments' type='text' maxlength='300' placeholder='Comments')
           h3.fs-subtitle Finally: Press Submit!
           #incomplete
           button#action-button.action-button(type='submit') Submit
@@ -242,7 +242,26 @@ html(lang="en")
         if (!/[A-Z]{3}/.test(acronym.value))
         {
           e.preventDefault();
+          messages.push('*TLA - Type 3 capital letters')
+        }
+        if(latitude.value === null || latitude.value === '')
+        {
+          e.preventDefault();
+          messages.push('*Latitude Required');
+        }
+        if(longitude.value === null || longitude.value === '')
+        {
+          e.preventDefault();
+          messages.push('*Longitude Required');
+        }
+        // Using Regular Expressions to validate the correct format of the address
+        // Ex. 4325 W. Palm Beach Rd., San Francisco, CA 94116
+        if(upload.value === null || upload.value === '')
+        {
+         e.preventDefault();
+         messages.push('*No file attached');
           messages.push('*TLA - Type 3 capital letters - Step 1')
+
         }
         // Evaluate 'animal' input field
         if(animal.value === null || animal.value === '')

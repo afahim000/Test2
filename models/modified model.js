@@ -29,11 +29,7 @@ const animalSchema = new mongoose.Schema({
 
   location:
   {
-    country: String,
-    state: String,
-    city: String,
-    street: Schema.Types.Mixed,
-    zipcode: Number,
+    address: Schema.Types.Mixed,
     latitude: Number,
     longitude: Number,
   },

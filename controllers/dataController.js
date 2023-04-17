@@ -5,14 +5,17 @@ const multer = require('multer');
 
 const images = multer.diskStorage({
 
-	destination: function (req, file, callback) {
-		if (req.body.filetypes === 'images') {
+	destination: function (req, file, callback){
+		if(req.body.filetypes === 'images')
+		{
 			callback(null, './dev-data/img');
 		}
-		else if (req.body.filetypes === 'video') {
+		else if(req.body.filetypes === 'video')
+		{
 			callback(null, './dev-data/videos');
 		}
-		else {
+		else
+		{
 			callback(null, './dev-data/audio');
 		}
 	},
@@ -51,7 +54,7 @@ const audioUpload = multer({
 //const vidUpload;
 //const audioUpload;
 exports.getOptions = (req, res) => {
-	res.status(200).render('buttons', { title: 'buttons' });
+	res.status(200).render('buttons', { title: 'buttons'});
 };
 
 exports.queryOptionsGet = (req, res) => {
@@ -63,8 +66,9 @@ exports.deleteGet = (req, res) => {
 };
 
 
-exports.addDataGet = (req, res) => {
-
+exports.addDataGet = (req, res) => 
+{
+	
 	res.status(200).render('tester', { title: 'tester' });
 };
 
@@ -72,75 +76,96 @@ exports.queryOptionsPost = (req, res) => {
 	let name;
 	let startDate;
 	let endDate;
-	let latitude;
+	let lat;
 	let longitude;
-	if (!req.body.animallist) {
-		name = /.+/;
+	let query = animalSchema.find({});
+	if(!req.body.animallist)
+	{
 	}
-	else {
+	else
+	{
 		name = req.body.animallist
+		query = animalSchema.find({animalName: name});
+
 	}
-	if (!req.body.startDate) {
-		startDate = /.+/;
+	if(!req.body.startDate)
+	{
+		startDate = '1000-12-31';
 	}
-	else {
-		startDate = req.body.startDate.split('-');
+	else
+	{
+		startDate = req.body.startDate;
 	}
-	if (!req.body.endDate) {
-		endDate = /.+/;
+	if(!req.body.endDate)
+	{
+		endDate = '3000-12-31';
 	}
-	else {
-		endDate = req.body.endDate.split('-')
+	else
+	{
+		endDate = req.body.endDate;
 	}
-	if (!req.body.latitude) {
-		latitude = /.*/;
+	query.find({ date:{"$gte": `${startDate}T00:00:00.000Z`, "$lte":
+	`${endDate}T00:00:00.000Z`}});
+	if(!req.body.latitude)
+	{
 	}
-	else {
-		latitude = req.body.latitude;
+	else
+	{
+		lat = req.body.latitude;
+		query.find({ 'location.latitude' : lat});
 	}
-	if (!req.body.longitude) {
-		longitude = /.*/
+	if(!req.body.longitude)
+	{
+		longitude = {$regex: /.*/}
 	}
-	else {
+	else
+	{
 		longitude = req.body.longitude;
+		query.find({ 'location.longitude' : longitude});
 	}
-	let query = animalSchema.find({ animalName: name, });
+	query = query.then((response) => {console.log(response);
+		res.render('search', {data: response} )});
 
 
 };
 
 exports.addDataPost = (req, res) => {
 
-	imgUpload(req, res, (err) => {
+		imgUpload(req, res, (err) => {
 		if (err) {
 			res.render('tester');
 			res.send('MEOWWWW!!!!');
 		}
 		else {
+			console.log(req.body.stime);
+			const time = req.body.stime;
+			const YMD = req.body.sdate;
 			let fileLocation = req.file.destination;
 			const data = new animalSchema({
-				id: count + 1,
-				animalName: req.body.animallist,
-				recorder:
-				{
-					last: req.body.lname,
-					first: req.body.fname
-				},
-				location:
-				{
-					latitude: req.body.latitude,
-					longitude: req.body.longitude
-				},
-				mediaType: req.body.filetypes,
-				fileDirectory: `.${fileLocation}/${req.file.filename}`
+			comments: req.body.comments,
+			animalName: req.body.animallist,
+			recorder: 
+			{
+				last: req.body.lname,
+				first: req.body.fname
+			},
+			location: 
+			{
+				address: req.body.address,
+				latitude:req.body.latitude,
+				longitude: req.body.longitude
+			},
+			date: new Date(`${YMD}T${time}:00`),
+			mediaType: req.body.filetypes,
+			fileDirectory: `.${fileLocation}/${req.file.filename}`
 			});
 			data.save();
 			//res.send('test');
 
-		}
-	});
+			}
+									});
 
-
+		
 };
 
 exports.deletePost = (req, res) => {
