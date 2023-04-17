@@ -19,7 +19,8 @@ const animalSchema = new mongoose.Schema({
   recorder:
   {
     first: { type: String, required: true },
-    last: { type: String, required: false }
+    last: { type: String, required: false },
+    TLA: {type: String},
   },
   //Will contain the time as well
   date:

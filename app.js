@@ -8,7 +8,7 @@ var viewsRouter = require('./routes/viewsRoutes');
 var usersRouter = require('./routes/users');
 var app = express();
 const mongoose = require('mongoose');
-
+const dataController = require('./controllers/dataController');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -24,6 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', viewsRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
+app.use('/search', dataController.queryOptionsGet);
+app.post('/search',dataController.queryOptionsPost);
 
 //jiohoij
 app.use('/upload', dataRouter);
