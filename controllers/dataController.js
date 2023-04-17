@@ -116,7 +116,6 @@ exports.queryOptionsPost = (req, res) => {
 	}
 	if(!req.body.longitude)
 	{
-		longitude = {$regex: /.*/}
 	}
 	else
 	{

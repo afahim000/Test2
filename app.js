@@ -24,8 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', viewsRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
-app.use('/search', dataController.queryOptionsGet);
-app.post('/search',dataController.queryOptionsPost);
+
 
 //jiohoij
 app.use('/upload', dataRouter);
