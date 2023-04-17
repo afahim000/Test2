@@ -147,7 +147,8 @@ exports.addDataPost = (req, res) => {
 			recorder: 
 			{
 				last: req.body.lname,
-				first: req.body.fname
+				first: req.body.fname,
+				TLA: req.body.acronym
 			},
 			location: 
 			{

@@ -104,6 +104,7 @@ html(lang="en")
 
 
   body 
+    img(src='images/user-1.jpg' alt='Testimony')
     .back
       a.btn(href='../data') Back
     h1 Search for your files
@@ -189,9 +190,40 @@ html(lang="en")
             td CIP
 
     block content
-    if data
-     each event in data
-      h1 = #{data[1].animalName}
+    .table_container 
+       table#table.table
+        thead.table_head 
+          tr.table_head_row 
+            th id 
+            th Animal name
+            th address
+            th latitude
+            th Longitude 
+            th comments
+            th date and time
+            th Uploaded By
+            th file type
+            th image
+        if data
+         each event in data
+          tr
+           td #{event._id}
+           td #{event.animalName}
+           td #{event.location.address}
+           td #{event.location.latitude}
+           td #{event.location.longitude}
+           td #{event.comments}
+           td #{event.date}
+           td #{event.recorder.first} #{event.recorder.last}
+           td #{event.mediaType}
+           td 
+              img(src='images/user-1.jpg' alt='Testimony')
+
+
+
+
+
+
 
         
 
