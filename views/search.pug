@@ -85,21 +85,43 @@ html(lang="en")
         display: flex;
         flex-direction: row;
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
       }
       form h2 {
         margin: 0;
+        width: 150px;
       }
-
+      .options {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
       #animal,
       #inputDate,
       #latitude,
       #longitude {
         margin: 0;
-        margin-right: 1rem;
-        margin-left: 1rem;
         height: 1.5rem;
+        width: 150px;
       }
-      #animal {padding: 0; height: 1.75rem;}
+      #animal {
+        padding: 0; 
+        height: 1.75rem;
+      }
+      /*Inputs*/
+      .input {
+        padding: 2px;
+        font-family: montserrat;
+        color: #2C3E50;
+        font-size: 13px;
+      }
+      input::file-selector-button {
+        padding: 12px;
+        font-family: montserrat;
+      }
 
 
 
@@ -109,15 +131,16 @@ html(lang="en")
     h1 Search for your files
     form()
       h2 Search by
-      select#animal(name='animal-list')
-        option(value='' selected disabled)
-        option(value='monk_parakeet') Monk Parakeet 
-        option(value='fiddler_crab') Fiddler Crab
-      input#inputDate(type='date')
-      .location
-        input#latitude(type='number' name='latitude' placeholder='Latitude' max='90' min='-90')
-        input#longitude(type='number' name='longitude' placeholder='Longitude' max='180' min='-180')
-        
+      .options
+        select#animal.input(name='animal-list')
+          option(value='' selected disabled) Select Animal
+          option(value='monk_parakeet') Monk Parakeet
+          option(value='fiddler_crab') Fiddler Crab
+
+        input#inputDate.input(type='date')
+        input#latitude.input(type='number' name='latitude' placeholder='Latitude' max='90' min='-90')
+        input#longitude.input(type='number' name='longitude' placeholder='Longitude' max='180' min='-180')
+          
     .table_container 
       table.table
         thead.table_head 

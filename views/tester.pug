@@ -17,10 +17,11 @@ html(lang="en")
       /*Color palete*/
       :root {
         --color-secondary:  #ffcb03;
+        --color-secondary-opacity: #ffcd0331;
       }
         
       html {        
-        background: linear-gradient(rgba(94, 197, 118, 0.7), rgba(255, 203, 3, 0.7));
+        background: linear-gradient(rgba(94, 197, 118, 0.6), rgba(255, 203, 3, 0.4));
         font-family: montserrat, arial, verdana;
       }
 
@@ -108,7 +109,7 @@ html(lang="en")
       
       button:hover,
       button:focus {
-        background: rgb(39, 174, 96, 0.7);
+        background: var(--color-secondary-opacity);
       }
       /*Select and Option*/
       select {
