@@ -6,6 +6,7 @@ var logger = require('morgan');
 var dataRouter = require('./controllers/dataRouter');
 var viewsRouter = require('./routes/viewsRoutes');
 var usersRouter = require('./routes/users');
+var searchRouter = require('./routes/searchRouter');
 var app = express();
 const mongoose = require('mongoose');
 const dataController = require('./controllers/dataController');
@@ -24,9 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', viewsRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
-
-
-//jiohoij
+app.use('/search', searchRouter);
 app.use('/upload', dataRouter);
 // ***** DELETE THIS ? *****
 // To display the pictures
