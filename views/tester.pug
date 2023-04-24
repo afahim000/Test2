@@ -339,10 +339,16 @@ html(lang="en")
         extension = extension.toLowerCase()
         if(fileVal == 'image')
         {
-        if(extension != 'jpg' || extension != 'jpeg' || extension != 'png')
+        if(extension != 'jpg' )
         {
-          e.preventDefault();
-          messages.push('Selected file type: Image does not correspond with attached file');
+            if(extension != 'jpeg')
+            {
+               if(extension != 'png')
+               {
+                  e.preventDefault();
+                  messages.push('Selected file type: Image does not correspond with attached file');
+               }
+            }
         }
         }
         if(messages.length > 0)
