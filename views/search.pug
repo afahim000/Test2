@@ -69,7 +69,7 @@ html(lang="en")
         table-layout: auto;
         width: 100%;
         border-collapse: separate;
-        border-spacing: 1px;
+        border-spacing: 0px;
         border-radius: 3px;
         overflow: hidden;
       }
@@ -133,6 +133,25 @@ html(lang="en")
         font-family: montserrat;
       }
 
+      /*button*/
+      .action-button {
+        width: 100px;
+        background: #27AE60;
+        color: white;
+        border: 0 none;
+        border-radius: 1px;
+        cursor: pointer;
+        padding: 5px;
+        margin: 0;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      
+      .action-button:hover,
+      .action-button:focus {
+        background: var(--color-secondary-opacity);
+      }
+
 
 
   body 
@@ -141,16 +160,16 @@ html(lang="en")
     h1 Search for your files
     form(method='POST' action='')
       h2 Search by
-      .options         
+      //- .options         
       select#animal(name='animallist')
         option(value='' selected disabled)
         option(value='monk_parakeet') Monk Parakeet 
         option(value='fiddler_crab') Fiddler Crab
       input#inputDate(type='date' name = 'startDate')
       input#inputDate(type='date' name = 'endDate')
-      .location
-        input#latitude(type='number' name='latitude' placeholder='Latitude' max='90' min='-90')
-        input#longitude(type='number' name='longitude' placeholder='Longitude' max='180' min='-180')
+      //- .location
+      input#latitude(type='number' name='latitude' placeholder='Latitude' max='90' min='-90')
+      input#longitude(type='number' name='longitude' placeholder='Longitude' max='180' min='-180')
       button#action-button.action-button(type='submit') Submit
     
     .table_container 
@@ -169,6 +188,7 @@ html(lang="en")
             th TLA
             th Comments
             th Link
+        //- Comments----- 
         tbody#table_body.table_body 
           if data
             each event in data
