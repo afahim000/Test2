@@ -92,7 +92,17 @@ html(lang="en")
         color: #2C3E50;
         font-size: 13px;
       }
-      
+      /*inputs: eliminates spinners in Chrome, Safary, Edge, Opera*/
+      .input::-webkit-inner-spin-button,
+      .input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      /*inputs: eliminates spinners in Firefox*/
+      .input[type=number] {
+        -moz-appearance: textfield;
+      }
+
       /*button*/
       button {
         width: 100px;
@@ -111,6 +121,7 @@ html(lang="en")
       button:focus {
         background: var(--color-secondary-opacity);
       }
+
       /*Select and Option*/
       select {
         background-color: white;
@@ -186,6 +197,13 @@ html(lang="en")
             input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude' value = '12')
             input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude' value = '12')
           h3.fs-subtitle Step 4: Insert address of sighting
+          .twoInputs 
+            input#street.input(type='text' name='street' placeholder='Street')
+            input#city.input(type='text' name='city' placeholder='City')
+          .twoInputs
+            input#state.input(type='text' name='state' placeholder='State')
+            input#zipcode.input(type='number' name='zipcode' placeholder='Zip Code')
+            input#country.input(type="text" name='country' placeholder='Country' value='USA')
           input#address.input(type='text' placeholder='Ex.: 123 N. Main St., Brooklyn, NY 12345' name='address' value = '123 N. Main St., Brooklyn, NY 12345')
           h3.fs-subtitle Step 5: Date and start/end time of sighting 
           .twoInputs
@@ -211,17 +229,22 @@ html(lang="en")
       const lastName = document.getElementById('lname');
       const acronym = document.getElementById('acronym')
       const animal= document.getElementById('animal');
-      const filename = document.getElementById('filename');
+      const latitude = document.getElementById('latitude');
+      const longitude = document.getElementById('longitude');
+      const street = document.getElementById('street');
+      const city = document.getElementById('city');
+      const state = document.getElementById('state');
+      const zipcode = document.getElementById('zipcode');
+      const country = document.getElementById('country');
+      const address = document.getElementById('address');
       const upload = document.getElementById('upload');
       const submit = document.getElementById('action-button');
       const inputs = document.querySelectorAll('.input');
       const form = document.getElementById('msform');
-      const latitude = document.getElementById('latitude');
-      const longitude = document.getElementById('longitude');
-      const address = document.getElementById('address');
       const sdate = document.getElementById('sdate');
       const stime = document.getElementById('stime');
       const etime = document.getElementById('etime');
+      const filename = document.getElementById('filename');
       const incomplete = document.getElementById('incomplete');
       const errors = false;
 
@@ -236,32 +259,13 @@ html(lang="en")
         if(!/[a-zA-Z .]+/.test(firstName.value) || !/[a-zA-Z .]+/.test(lastName.value))
         {
           e.preventDefault();
-          messages.push('*First and Last Name Required. Only alphabetic characters or a dot (.) - Step 1');
+          messages.push('*First and Last Name Required - Step 1');
         }
         // Evaluate 'acronym' input field
         if (!/[A-Z]{3}/.test(acronym.value))
         {
           e.preventDefault();
-          messages.push('*TLA - Type 3 capital letters')
-        }
-        if(latitude.value === null || latitude.value === '')
-        {
-          e.preventDefault();
-          messages.push('*Latitude Required');
-        }
-        if(longitude.value === null || longitude.value === '')
-        {
-          e.preventDefault();
-          messages.push('*Longitude Required');
-        }
-        // Using Regular Expressions to validate the correct format of the address
-        // Ex. 4325 W. Palm Beach Rd., San Francisco, CA 94116
-        if(upload.value === null || upload.value === '')
-        {
-         e.preventDefault();
-         messages.push('*No file attached');
           messages.push('*TLA - Type 3 capital letters - Step 1')
-
         }
         // Evaluate 'animal' input field
         if(animal.value === null || animal.value === '')
@@ -277,12 +281,36 @@ html(lang="en")
         }
         // Evaluate 'address' input field
         // Using Regular Expressions to validate the correct format of the address
-        // Ex. 4325 W. Palm Beach Rd., San Francisco, CA 94116
         const addressF = /^(\d* [a-zA-Z .]*), ([a-zA-Z ]*), ([A-Z]{2}) (\d{5})$/;
-        if(!addressF.test(address.value))
+        const streetFormat = /^\d+ [a-zA-Z .]+$/;
+        const cityFormat = /^[a-zA-Z .-]+$/;
+        const stateFormat = /^[a-zA-Z ]+$/;
+        const zipcodeFormat = /^\d{5}-\d{4}|\d{5}$/;
+        const countryFormat = /^[\w]+$/;
+        if(!streetFormat.test(street.value))
         {
           e.preventDefault();
-          messages.push('*Wrong address format - Step 4');
+          messages.push('*Street Required. Check format - Step 4');
+        }
+        if(!cityFormat.test(city.value))
+        {
+          e.preventDefault();
+          messages.push('*City Required. Check format - Step 4');
+        }
+        if(!stateFormat.test(state.value))
+        {
+          e.preventDefault();
+          messages.push('*State Required. Check format - Step 4');
+        }
+        if(!zipcodeFormat.test(zipcode.value))
+        {
+          e.preventDefault();
+          messages.push('*Zip Code Required. Check format - Step 4');
+        }
+        if(!countryFormat.test(country.value))
+        {
+          e.preventDefault();
+          messages.push('*Country Required. Check format - Step 4');
         }
         // Evaluate 'sdate' 'stime' and 'etime' input fields
         if(sdate.value === '' || stime.value === '' || etime.value === '')
