@@ -200,11 +200,12 @@ html(lang="en")
           .twoInputs 
             input#street.input(type='text' name='street' placeholder='Street')
             input#city.input(type='text' name='city' placeholder='City')
+            select#selectstate.input(name='selects')
           .twoInputs
             input#state.input(type='text' name='state' placeholder='State')
             input#zipcode.input(type='number' name='zipcode' placeholder='Zip Code')
             input#country.input(type="text" name='country' placeholder='Country' value='USA')
-          input#address.input(type='text' placeholder='Ex.: 123 N. Main St., Brooklyn, NY 12345' name='address' value = '123 N. Main St., Brooklyn, NY 12345')
+          //- input#address.input(type='text' placeholder='Ex.: 123 N. Main St., Brooklyn, NY 12345' name='address' value = '123 N. Main St., Brooklyn, NY 12345')
           h3.fs-subtitle Step 5: Date and start/end time of sighting 
           .twoInputs
             input#sdate.input(type='date' name='sdate' value = '2022-08-16')
@@ -236,7 +237,7 @@ html(lang="en")
       const state = document.getElementById('state');
       const zipcode = document.getElementById('zipcode');
       const country = document.getElementById('country');
-      const address = document.getElementById('address');
+      //- const address = document.getElementById('address');
       const upload = document.getElementById('upload');
       const submit = document.getElementById('action-button');
       const inputs = document.querySelectorAll('.input');
@@ -281,12 +282,11 @@ html(lang="en")
         }
         // Evaluate 'address' input field
         // Using Regular Expressions to validate the correct format of the address
-        const addressF = /^(\d* [a-zA-Z .]*), ([a-zA-Z ]*), ([A-Z]{2}) (\d{5})$/;
-        const streetFormat = /^\d+ [a-zA-Z .]+$/;
+        const streetFormat = /^\d+ [\w\d .]+$/;
         const cityFormat = /^[a-zA-Z .-]+$/;
         const stateFormat = /^[a-zA-Z ]+$/;
         const zipcodeFormat = /^\d{5}-\d{4}|\d{5}$/;
-        const countryFormat = /^[\w]+$/;
+        const countryFormat = /^[\w ]+$/;
         if(!streetFormat.test(street.value))
         {
           e.preventDefault();
@@ -331,25 +331,26 @@ html(lang="en")
           messages.push('*No file attached - Step 7');
         }
 
-
-        
+        //------------------------------------
+        // TODO: Comment this part of the code
+        //------------------------------------
         const fileVal = filename.value;
         const uploadVal = upload.value;
         let extension = upload.value.slice((Math.max(0, upload.value.lastIndexOf(".")) || Infinity) + 1);
         extension = extension.toLowerCase()
         if(fileVal == 'image')
         {
-        if(extension != 'jpg' )
-        {
+          if(extension != 'jpg' )
+          {
             if(extension != 'jpeg')
             {
-               if(extension != 'png')
-               {
-                  e.preventDefault();
-                  messages.push('Selected file type: Image does not correspond with attached file');
-               }
+              if(extension != 'png')
+              {
+                e.preventDefault();
+                messages.push('Selected file type: Image does not correspond with attached file');
+              }
             }
-        }
+          }
         }
         if(messages.length > 0)
         {
@@ -357,8 +358,29 @@ html(lang="en")
           //incomplete.removeAttribute = 'hidden';
         }
         console.log('lol');
-       });
-           
+      });
+
+      // -------------------
+      // For address section
+      // -------------------
+      // List of States
+      const usstates = [ "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
+      "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine",
+      "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+      "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma",
+      "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
+      "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming" ];
+      // Getting the select element
+      const selectstate = document.getElementById('selectstate');
+      let option = document.createElement('option');
+      option.text = "";
+      selectstate.appendChild(option);
+      for(let state of usstates) {
+        option = document.createElement('option');
+        option.text = state;
+        selectstate.appendChild(option);
+      }
+      
 
 if errors
  error.msg
