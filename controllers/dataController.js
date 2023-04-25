@@ -6,7 +6,7 @@ const multer = require('multer');
 const images = multer.diskStorage({
 
 	destination: function (req, file, callback){
-		if(req.body.filetypes === 'images')
+		if(req.body.filetypes === 'image')
 		{
 			callback(null, './dev-data/img');
 		}
@@ -54,6 +54,7 @@ const audioUpload = multer({
 //const vidUpload;
 //const audioUpload;
 exports.getOptions = (req, res) => {
+	res.redirect = false;
 	res.status(200).render('buttons', { title: 'buttons'});
 };
 
@@ -140,6 +141,7 @@ exports.addDataPost = (req, res) => {
 			const time = req.body.stime;
 			const YMD = req.body.sdate;
 			let fileLocation = req.file.destination;
+			fileLocation = fileLocation.replace('./dev-data/', '');
 			const data = new animalSchema({
 			comments: req.body.comments,
 			animalName: req.body.animallist,
@@ -157,7 +159,7 @@ exports.addDataPost = (req, res) => {
 			},
 			date: new Date(`${YMD}T${time}:00`),
 			mediaType: req.body.filetypes,
-			fileDirectory: `.${fileLocation}/${req.file.filename}`
+			fileDirectory: `${fileLocation}/${req.file.filename}`
 			});
 			data.save();
 			//res.send('test');

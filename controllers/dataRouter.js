@@ -12,13 +12,11 @@ router.get('/', dataController.getOptions);
 
 //relevent get and post functions that will handle queries, adding and deleting from the database
 
-router.get('/search', dataController.queryOptionsGet);
+
 
 router.get('/add', dataController.addDataGet);
 
 router.get('/delete', dataController.deleteGet);
-
-router.post('/search',dataController.queryOptionsPost);
 
 router.post('/add', dataController.addDataPost);
 

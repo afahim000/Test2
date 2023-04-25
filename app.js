@@ -6,7 +6,13 @@ var logger = require('morgan');
 var dataRouter = require('./controllers/dataRouter');
 var viewsRouter = require('./routes/viewsRoutes');
 var usersRouter = require('./routes/users');
+var searchRouter = require('./routes/searchRouter');
+var addRouter = require('./routes/addRouter');
+var videoRouter = require('./routes/videoRouter');
+var audioRouter = require('./routes/audioRouter');
+var imageRouter = require('./routes/imageRouter');
 var app = express();
+
 const mongoose = require('mongoose');
 const dataController = require('./controllers/dataController');
 // view engine setup
@@ -20,14 +26,16 @@ app.use(cookieParser());
 
 // 'public' dir has the css, js, and images dirs
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dev-data')));
 
 app.use('/', viewsRouter);
 app.use('/users', usersRouter);
-app.use('/data', dataRouter);
-
-
-//jiohoij
-app.use('/upload', dataRouter);
+app.use('/search', searchRouter);
+app.use('/options', dataRouter);
+app.use('/add', addRouter);
+app.use('/image', imageRouter);
+app.use('/audio', audioRouter);
+app.use('/video', videoRouter);
 // ***** DELETE THIS ? *****
 // To display the pictures
 // gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine
