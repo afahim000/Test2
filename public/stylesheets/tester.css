@@ -1,0 +1,173 @@
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*Color palete*/
+:root {
+  --color-secondary: #ffcb03;
+  --color-secondary-opacity: #ffcd0331;
+}
+
+html {
+  background: linear-gradient(rgba(94, 197, 118, 0.6), rgba(255, 203, 3, 0.4));
+  font-family: montserrat, arial, verdana;
+}
+
+/*Back Button*/
+.back {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn {
+  padding: 0.8rem 2.5rem;
+  background-color: var(--color-secondary);
+  border: 0;
+  font-size: medium;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background-color: var(--color-secondary-opacity);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+}
+
+/*form styles*/
+.formbox {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  width: 600px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 530px;
+}
+
+/*inputs*/
+.input {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+
+input::file-selector-button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+
+/*inputs: eliminates spinners in Chrome, Safary, Edge, Opera*/
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*inputs: eliminates spinners in Firefox*/
+.input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/*button*/
+button {
+  width: 100px;
+  background: #27AE60;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px 5px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+button:hover,
+button:focus {
+  background: var(--color-secondary-opacity);
+}
+
+/*Select and Option*/
+select {
+  background-color: white;
+}
+
+option {
+  background-color: white;
+  font-family: montserrat, arial, verdana !important;
+  color: #666;
+}
+
+/*Text area*/
+textarea {
+  resize: vertical;
+  max-height: 140px;
+  min-height: 60px;
+}
+
+/*headings*/
+h2 {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+#incomplete {
+  color: red;
+}
+
+.twoInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+#acronym {
+  width: 64px;
+}
+
+/*For time input elements - works better in Chrome*/
+input[type='time']:before {
+  content: attr(placeholder);
+  -moz-appearance: none;
+}
