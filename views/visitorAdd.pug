@@ -183,16 +183,16 @@ html(lang="en")
           .twoInputs
             input#fname.input(type="text" placeholder="First Name" name="fname" value = 'bob')
             input#lname.input(type="text" placeholder="Last Name" name='lname' value = 'maria')
-            input#acronym.input(type="text" placeholder="TLA" maxlength="3" name='acronym' value = 'DHF')
+            //- input#acronym.input(type="text" placeholder="TLA" maxlength="3" name='acronym' value = 'DHF')
           h3.fs-subtitle Step 2: Select type of animal
           select#animal.input(name='animallist')
             option(value="" selected disabled)
             option(value="monk_parakeet") Monk Parakeet
             option(value='fiddler_crab') Fiddler Crab
           h3.fs-subtitle Step 3: Insert location coordinates 
-          .twoInputs
-            input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude' value = '12')
-            input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude' value = '12')
+          //- .twoInputs
+          //-   input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude' value = '12')
+          //-   input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude' value = '12')
           h3.fs-subtitle Step 4: Insert address of sighting
           .twoInputs 
             input#street.input(type='text' name='street' placeholder='Street')
@@ -225,10 +225,10 @@ html(lang="en")
     script(type='text/javascript' defer = '').
       const firstName = document.getElementById('fname');
       const lastName = document.getElementById('lname');
-      const acronym = document.getElementById('acronym')
+      //- const acronym = document.getElementById('acronym')
       const animal= document.getElementById('animal');
-      const latitude = document.getElementById('latitude');
-      const longitude = document.getElementById('longitude');
+      //- const latitude = document.getElementById('latitude');
+      //- const longitude = document.getElementById('longitude');
       const street = document.getElementById('street');
       const city = document.getElementById('city');
       const state = document.getElementById('state');
@@ -260,23 +260,23 @@ html(lang="en")
           messages.push('*First and Last Name Required - Step 1');
         }
         // Evaluate 'acronym' input field
-        if (!/[A-Z]{3}/.test(acronym.value))
-        {
-          e.preventDefault();
-          messages.push('*TLA - Type 3 capital letters - Step 1')
-        }
+        //- if (!/[A-Z]{3}/.test(acronym.value))
+        //- {
+        //-   e.preventDefault();
+        //-   messages.push('*TLA - Type 3 capital letters - Step 1')
+        //- }
         // Evaluate 'animal' input field
         if(animal.value === null || animal.value === '')
         {
           e.preventDefault();
           messages.push('*Animal name required - Step 2');
         }
-        // Evaluate 'latitude' and 'longitude' input fields
-        if(latitude.value === '' || longitude.value === '')
-        {
-          e.preventDefault();
-          messages.push('*Latitude and Longitude Required - Step 3');
-        }
+        //- // Evaluate 'latitude' and 'longitude' input fields
+        //- if(latitude.value === '' || longitude.value === '')
+        //- {
+        //-   e.preventDefault();
+        //-   messages.push('*Latitude and Longitude Required - Step 3');
+        //- }
         // Evaluate 'address' input field
         // Using Regular Expressions to validate the correct format of the address
         const streetFormat = /^\d+ [\w\d .]+$/;
