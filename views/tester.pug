@@ -329,7 +329,7 @@ html(lang="en")
         }
 
         //------------------------------------
-        // TODO: Comment this part of the code
+        // Checking type of file uploaded
         //------------------------------------
         // Get the file name
         const fileType = filename.value;
@@ -338,31 +338,38 @@ html(lang="en")
         // Extract the extension from the name
         let lastDot = uploadVal.lastIndexOf('.');
         let extension = uploadVal.substring(lastDot + 1).toLowerCase();
-        console.log(extension);
-        console.log(fileType);
-        
-        //- let extension = upload.value.slice((Math.max(0, upload.value.lastIndexOf(".")) || Infinity) + 1);
-        //- extension = extension.toLowerCase()
+        // Check that file extension corespond with the correct file type
         if(fileType == 'image')
         {
-          if(extension != 'jpg')
+          if(extension != 'jpg' && extension != 'jpeg' && extension != 'png')
           {
-            if(extension != 'jpeg')
-            {
-              if(extension != 'png')
-              {
-                e.preventDefault();
-                messages.push('Selected file type: Image does not correspond with attached file');
-              }
-            }
+            e.preventDefault();
+            messages.push('Selected file type: Image does not correspond with attached file');
           }
         }
+        else if (fileType == 'audio')
+        {
+          if(extension != 'mp3' && extension != 'm4a' && extension != 'mp4' && extension != 'wav' && extension != 'wma' && extension != 'aac')
+          {
+            e.preventDefault();
+            messages.push('Selected file type: Audio does not correspond with attached file');
+          }
+        }
+        else if (fileType == 'video')
+        {
+          if(extension != 'mp4' && extension != 'mpeg-4' && extension != 'mov' && extension != 'wmv' && extension != 'avi' && extension != 'mkv')
+          {
+            e.preventDefault();
+            messages.push('Selected file type: Video does not correspond with attached file');
+          }
+        }
+
+        // Print error messages to the user
         if(messages.length > 0)
         {
           incomplete.innerText = messages.join(' \n');
           //incomplete.removeAttribute = 'hidden';
         }
-        console.log('lol');
       });
 
       // -------------------
