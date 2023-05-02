@@ -6,6 +6,8 @@
   --color-primary-darker: #4bbb7d;
   --color-secondary: #ffcb03;
   --color-secondary-opacity: #ffcd0331;
+  --color-labels: #666;
+  --height-labels: 37px;
 }
 
 html {
@@ -44,28 +46,17 @@ h1 {
   margin-bottom: 5px;
 }
 
-/*Table*/
+/* ----- */
+/* Table */
+/* ----- */
 .table_container {
   margin: 0;
   margin-top: 5px;
   padding: 0;
-  /*display: flex;
-        justify-content: center;*/
-}
-
-.table td,
-.table th {
-  padding: 1rem;
-  padding: 2px;
-  padding-right: 1rem;
-  padding-right: 2px;
-  padding-left: 1rem;
-  padding-left: 2px;
-  text-align: center;
 }
 
 .table {
-  table-layout: auto;
+  table-layout: fixed;
   width: 100%;
   border-collapse: separate;
   border-spacing: 0px;
@@ -79,27 +70,86 @@ h1 {
   color: white;
 }
 
-.table_body td {
+.table td,
+.table th {
+  padding-right: 1px;
+  padding-left: 1px;
+  text-align: center;
+  margin: 0px;
+}
+
+#table_body td {
   margin: 10px;
   margin: 2px;
 }
 
-.table_body tr:nth-child(odd) {
+#table_body tr:nth-child(odd) {
   background-color: rgb(230, 230, 230);
 }
 
-.table_body tr:nth-child(even) {
+#table_body tr:nth-child(even) {
   background-color: white;
 }
 
-/*-------------------*/
-/*Form*/
+/* Colums size */
+#id {
+  width: 8.3%
+}
+
+#fn {
+  width: 8.3%
+}
+
+#ft {
+  width: 5%
+}
+
+#an {
+  width: 8.3%
+}
+
+#da {
+  width: 8.3%
+}
+
+#ad {
+  width: 8.3%
+}
+
+#lo {
+  width: 5.1%
+}
+
+#la {
+  width: 5.1%
+}
+
+#up {
+  width: 7%
+}
+
+#tl {
+  width: 2%
+}
+
+#co {
+  width: 8.3%
+}
+
+#li {
+  width: 8.3%
+}
+
+/* ---- */
+/* Form */
+/* ---- */
 form {
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 10px;
+  align-items: end;
 }
 
 form h2 {
@@ -107,56 +157,79 @@ form h2 {
   width: 150px;
 }
 
-.options {
+.div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: center;
+}
+
+.subdiv {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 5px;
 }
 
-#animal,
-#inputDate,
-#latitude,
-#longitude {
-  margin: 0;
-  height: 1.5rem;
-  width: 150px;
-}
-
-#animal {
-  padding: 0;
-  height: 1.75rem;
-}
-
 /*Inputs*/
+
 .input {
-  padding: 2px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 150px;
+  height: fit-content;
+  box-sizing: border-box;
   font-family: montserrat;
   color: #2C3E50;
   font-size: 13px;
 }
 
-input::file-selector-button {
-  padding: 12px;
-  font-family: montserrat;
+/*Removes spinners for input type=number (Chrome, Safary, Edge, Opera)*/
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*Removes spinners for input type=number (Firefox)*/
+.input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Remlves clock icon for input type=time */
+.input[type=time]::-webkit-calendar-picker-indicator {
+  background: fixed;
+  padding: 2px;
+}
+
+#animal {
+  padding: 0;
+  height: var(--height-labels);
+  background-color: white;
+}
+
+option {
+  font-family: montserrat, arial, verdana !important;
 }
 
 /*button*/
-.action-button {
+#action-button {
   width: 100px;
+  height: var(--height-labels);
   background: #27AE60;
   color: white;
   border: 0 none;
   border-radius: 1px;
   cursor: pointer;
-  padding: 5px;
+  padding: 2px;
   margin: 0;
   text-decoration: none;
   font-size: 14px;
 }
 
-.action-button:hover,
-.action-button:focus {
+#action-button:hover,
+#action-button:focus {
   background: var(--color-secondary-opacity);
 }
