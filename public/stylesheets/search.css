@@ -53,27 +53,32 @@ h1 {
   margin: 0;
   margin-top: 5px;
   padding: 0;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 .table {
   table-layout: fixed;
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0px;
+  border-collapse: collapse;
   border-radius: 3px;
-  overflow: hidden;
+  display: block;
+  /* Ajust height - check how to make it to fix the screen */
+  height: 533px;
+  overflow: auto;
 }
 
-.table_head {
-  background-color: rgb(39, 82, 20);
+.table_head th {
   background: var(--color-primary-darker);
   color: white;
+  font-size: 13pt;
+  position: sticky;
+  top: 0;
 }
 
 .table td,
 .table th {
-  padding-right: 1px;
-  padding-left: 1px;
+  padding-right: 3px;
+  padding-left: 3px;
   text-align: center;
   margin: 0px;
 }
@@ -137,12 +142,16 @@ h1 {
 }
 
 #li {
-  width: 8.3%
+  width: 2.5%
 }
 
-/* ---- */
-/* Form */
-/* ---- */
+img {
+  width: 23px;
+}
+
+/* ----------- */
+/* Search Form */
+/* ----------- */
 form {
   display: flex;
   flex-direction: row;
@@ -150,11 +159,6 @@ form {
   flex-wrap: wrap;
   gap: 10px;
   align-items: end;
-}
-
-form h2 {
-  margin: 0;
-  width: 150px;
 }
 
 .div {
@@ -170,6 +174,10 @@ form h2 {
   flex-direction: row;
   justify-content: space-between;
   gap: 5px;
+}
+
+span {
+  font-size: small;
 }
 
 /*Inputs*/
@@ -204,7 +212,7 @@ form h2 {
   padding: 2px;
 }
 
-#animal {
+select {
   padding: 0;
   height: var(--height-labels);
   background-color: white;
@@ -229,7 +237,10 @@ option {
   font-size: 14px;
 }
 
-#action-button:hover,
-#action-button:focus {
+#action-button:hover {
   background: var(--color-secondary-opacity);
+}
+
+#action-button:focus {
+  background: #27AE60;
 }

@@ -12,9 +12,16 @@ html(lang="en")
     .back
       a.btn(href='../options') Back
     h1 Search for your files
-    form(method='POST' action='')   
+    form#form(method='POST' action='')  
+      .div 
+        span.labels File type 
+        select#fileType.input(name='fileType')
+          option(value='' selected disabled)
+          option(value='image') Image
+          option(value='audio') Audio  
+          option(value='video') Video
       .div
-        span.labels Animal type      
+        span.labels Animal      
         select#animal.input(name='animallist')
           option(value='' selected disabled)
           option(value='monk_parakeet') Monk Parakeet 
@@ -71,9 +78,62 @@ html(lang="en")
                 td #{event.tla}
                 td #{event.comments}
                 td
-                  img(src= `${event.fileDirectory}` alt='Testimony')
+                  //- img(src= `${event.fileDirectory}` alt='Testimony')
+                  a(href=`${event.fileDirectory}`)
+                    img(src=`images/icon_${event.mediaType}.png`, alt="icon")
     
     script(type='text/javascript' defer = '').
+      
+      const form = document.getElementById('form');
+      const fileType = document.getElementById('fileType');
+      const animal = document.getElementById('animal');
+      const sdate = document.getElementById('inputDate');
+      const edate = document.getElementById('inputEndDate');
+      const slatitude = document.getElementById('latitude');
+      const elatitude = document.getElementById('endlatitude');
+      const slongitude = document.getElementById('longitude');
+      const elongitude = document.getElementById('endlongitude');
+      const button = document.getElementById('action-button');
+      
+      // ----------------
+      // Input validation
+      // ----------------
+      form.addEventListener('submit', (e) => {
+        // Checking that at least one query criteria is not empty
+        // Start and End dates are considered one query criteria
+        // Same with Latitude and Longitude
+        if(fileType.value === '' && animal.value === '' && sdate.value === ''
+        && edate.value === '' && (slatitude.value === '' || elatitude.value === '')
+        && (slongitude.value === '' || elongitude.value === '')) {
+          e.preventDefault();
+          alert('You must define at least one query criteria. Start and End Latitude together count as one.');
+        }
+
+        // Comparing start date and end date
+        const sd = sdate.value;
+        const ed = edate.value;
+        if(sd !== '' && ed !== '' && sd > ed) {
+          e.preventDefault();
+          alert('Start date must be earlier than End date.')
+        }
+
+        // Checking latitude range values
+        const sl = slatitude.value;
+        const el = elatitude.value;
+        if(sl !== '' && el !== '' && sl > el) {
+          e.preventDefault();
+          alert('Latitude Start must be smaller than Latitude End');
+        }
+
+        // Checking latitude range values
+        const slo = slongitude.value;
+        const elo = elongitude.value;
+        if(elo !== '' && elo !== '' && slo > elo) {
+          e.preventDefault();
+          alert('Longitude Start must be smaller than Longitude End');
+        }
+      });
+
 
 
 
