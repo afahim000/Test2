@@ -204,10 +204,14 @@ html(lang="en")
             input#country.input(type="text" name='country' placeholder='Country' value='USA')
           //- input#address.input(type='text' placeholder='Ex.: 123 N. Main St., Brooklyn, NY 12345' name='address' value = '123 N. Main St., Brooklyn, NY 12345')
           h3.fs-subtitle Step 5: Date and start/end time of sighting 
-          .twoInputs
-            input#sdate.input(type='date' name='sdate' value = '2022-08-16')
-            input#stime.input(type='time' name='stime' placeholder='Start')
-            input#etime.input(type='time' name='etime' placeholder='End')
+          .threeInputs
+            input#sdate.input(type='date' name='sdate')
+            .setTime
+              span.timeLabel Start time 
+              input#stime.input(type='time' name='stime' placeholder='Start')
+            .setTime
+              span.timeLabel End time
+              input#etime.input(type='time' name='etime' placeholder='End')
           h3.fs-subtitle Step 6: Select type of file
           select#filename.input(name="filetypes" placeholder = "file types")
             option(value='' selected disabled)
@@ -349,7 +353,7 @@ html(lang="en")
         }
         else if (fileType == 'audio')
         {
-          if(extension != 'mp3' && extension != 'm4a' && extension != 'mp4' && extension != 'wav' && extension != 'wma' && extension != 'aac')
+          if(extension != 'mp3' && extension != 'm4a' && extension != 'wav' && extension != 'wma' && extension != 'aac')
           {
             e.preventDefault();
             messages.push('Selected file type: Audio does not correspond with attached file');

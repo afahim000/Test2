@@ -5,6 +5,7 @@
 :root {
   --color-secondary: #ffcb03;
   --color-secondary-opacity: #ffcd0331;
+  --color-labels: #666;
 }
 
 html {
@@ -98,6 +99,11 @@ input::file-selector-button {
   -moz-appearance: textfield;
 }
 
+.input[type=time]::-webkit-calendar-picker-indicator {
+  background: fixed;
+  padding: 2px;
+}
+
 /*button*/
 button {
   width: 100px;
@@ -125,7 +131,7 @@ select {
 option {
   background-color: white;
   font-family: montserrat, arial, verdana !important;
-  color: #666;
+  color: var(--color-labels);
 }
 
 /*Text area*/
@@ -146,7 +152,7 @@ h2 {
 h3 {
   font-weight: normal;
   font-size: 13px;
-  color: #666;
+  color: var(--color-labels);
   margin-bottom: 10px;
   margin-top: 20px;
 }
@@ -160,6 +166,24 @@ h3 {
   flex-direction: row;
   justify-content: space-between;
   gap: 5px;
+}
+
+.threeInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+#sdate {
+  width: 164px;
+  height: fit-content;
+}
+
+.timeLabel {
+  font-size: small;
+  color: var(--color-labels);
 }
 
 #acronym {

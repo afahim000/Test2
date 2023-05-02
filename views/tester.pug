@@ -204,10 +204,14 @@ html(lang="en")
             input#country.input(type="text" name='country' placeholder='Country' value='USA')
           //- input#address.input(type='text' placeholder='Ex.: 123 N. Main St., Brooklyn, NY 12345' name='address' value = '123 N. Main St., Brooklyn, NY 12345')
           h3.fs-subtitle Step 5: Date and start/end time of sighting 
-          .twoInputs
-            input#sdate.input(type='date' name='sdate' value = '2022-08-16')
-            input#stime.input(type='time' name='stime' placeholder='Start')
-            input#etime.input(type='time' name='etime' placeholder='End')
+          .threeInputs
+            input#sdate.input(type='date' name='sdate')
+            .setTime
+              span.timeLabel Start time 
+              input#stime.input(type='time' name='stime')
+            .setTime
+              span.timeLabel End time
+              input#etime.input(type='time' name='etime')
           h3.fs-subtitle Step 6: Select type of file
           select#filename.input(name="filetypes" placeholder = "file types")
             option(value='' selected disabled)
@@ -245,6 +249,12 @@ html(lang="en")
       const filename = document.getElementById('filename');
       const incomplete = document.getElementById('incomplete');
       const errors = false;
+      
+      // -------------------------------------------------
+      // Setting date's input box initial value to today's
+      sdate.valueAsDate = new Date();
+      stime.value = '10:00';
+      etime.value = '13:00';
 
       // ----------------
       // Input validation
@@ -263,7 +273,7 @@ html(lang="en")
         if (!/[A-Z]{3}/.test(acronym.value))
         {
           e.preventDefault();
-          messages.push('*TLA - Type 3 capital letters - Step 1')
+          messages.push('*TLA - Type 3 capital letters Required - Step 1')
         }
         // Evaluate 'animal' input field
         if(animal.value === null || animal.value === '')
@@ -287,7 +297,7 @@ html(lang="en")
         if(!streetFormat.test(street.value))
         {
           e.preventDefault();
-          messages.push('*Street Required. Check format - Step 4');
+          messages.push('*Street Required. Check format (123 Main St.) - Step 4');
         }
         if(!cityFormat.test(city.value))
         {
@@ -313,16 +323,16 @@ html(lang="en")
         if(sdate.value === '' || stime.value === '' || etime.value === '')
         {
           e.preventDefault();
-          messages.push('*Date and time Required - Step 5');
+          messages.push('*Date, start and end times Required - Step 5');
         }
         // Evaluate 'file name' input field
-        if(filename.value === null || filename.value === '')
+        if(filename.value === '')
         {
           e.preventDefault();
           messages.push('*File type required - Step 6'); 
         }
         // Evaluate 'upload' input field
-        if(upload.value === null || upload.value === '')
+        if(upload.value === '')
         {
           e.preventDefault();
           messages.push('*No file attached - Step 7');
@@ -349,7 +359,7 @@ html(lang="en")
         }
         else if (fileType == 'audio')
         {
-          if(extension != 'mp3' && extension != 'm4a' && extension != 'mp4' && extension != 'wav' && extension != 'wma' && extension != 'aac')
+          if(extension != 'mp3' && extension != 'm4a' && extension != 'wav' && extension != 'wma' && extension != 'aac')
           {
             e.preventDefault();
             messages.push('Selected file type: Audio does not correspond with attached file');
