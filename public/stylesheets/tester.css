@@ -116,11 +116,12 @@ button {
   margin: 10px 5px;
   text-decoration: none;
   font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:hover,
 button:focus {
-  background: var(--color-secondary-opacity);
+  background: #58cd88;
 }
 
 /*Select and Option*/
@@ -194,4 +195,30 @@ h3 {
 input[type='time']:before {
   content: attr(placeholder);
   -moz-appearance: none;
+}
+
+/* MODAL WINDOW */
+#hidden {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 60rem;
+  background-color: #f3f3f3;
+  padding: 5rem 6rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.5s;
+  flex-flow: column;
+  align-items: center;
+  display: none;
+}
+
+#hidden p {
+  font-size: medium;
+  text-align: center;
+}
+
+#hidden p span {
+  font-size: large;
 }

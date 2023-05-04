@@ -181,9 +181,9 @@ html(lang="en")
         fieldset
           h3.fs-subtitle Step 1: Insert your name and 3-letter acronym
           .twoInputs
-            input#fname.input(type="text" placeholder="First Name" name="fname" value = 'bob')
-            input#lname.input(type="text" placeholder="Last Name" name='lname' value = 'maria')
-            input#acronym.input(type="text" placeholder="TLA" maxlength="3" name='acronym' value = 'DHF')
+            input#fname.input(type="text" placeholder="First Name" name="fname")
+            input#lname.input(type="text" placeholder="Last Name" name='lname')
+            input#acronym.input(type="text" placeholder="TLA" maxlength="3" name='acronym')
           h3.fs-subtitle Step 2: Select type of animal
           select#animal.input(name='animallist')
             option(value="" selected disabled)
@@ -191,8 +191,8 @@ html(lang="en")
             option(value='fiddler_crab') Fiddler Crab
           h3.fs-subtitle Step 3: Insert location coordinates 
           .twoInputs
-            input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude' value = '12')
-            input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude' value = '12')
+            input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude')
+            input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude')
           h3.fs-subtitle Step 4: Insert address of sighting
           .twoInputs 
             input#street.input(type='text' name='street' placeholder='Street')
@@ -226,6 +226,12 @@ html(lang="en")
           //- #incomplete displays the error messages
           #incomplete
           button#action-button.action-button(type='submit') Submit
+    
+    #hidden
+      p.message
+        span You 
+        | have successfuly uploaded a file to our database
+      button#done Done
 
     script(type='text/javascript' defer = '').
       const firstName = document.getElementById('fname');
@@ -251,15 +257,35 @@ html(lang="en")
       const incomplete = document.getElementById('incomplete');
       const errors = false;
       
-      // -------------------------------------------------
+      /////////////////////////////////////
+      // Modal - Hidden success message
+
+      const hidden = document.getElementById('hidden');
+      const done = document.getElementById('done');
+
+      const openModal = function (e) {
+        hidden.style.display = 'flex';
+      };
+
+
+      submit.addEventListener('sumbit', openModal);
+
+      // Close popup message. Redirecting to Options page
+      done.addEventListener('click', () => {
+        hidden.style.display = 'none';
+        document.location.href = "/options";
+      });
+
+
+      ////////////////////////////////////////////////////
       // Setting date's input box initial value to today's
       sdate.valueAsDate = new Date();
       stime.value = '10:00';
       etime.value = '13:00';
 
-      // ----------------
-      // Input validation
-      // ----------------
+      //////////////////////
+      // Input validation //
+      //////////////////////
       form.addEventListener('submit', (e)=>{
         //Stores messages for incomplete fields
         const messages = [];
@@ -383,9 +409,9 @@ html(lang="en")
         }
       });
 
-      // -------------------
-      // For address section
-      // -------------------
+      /////////////////////////
+      // For address section //
+      /////////////////////////
       // List of States
       const usstates = [ "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
       "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine",
@@ -404,9 +430,12 @@ html(lang="en")
         selectstate.appendChild(option);
       }
       
+      
 
-if errors
- error.msg
+
+
+//- if errors
+//-  error.msg
 
 
 

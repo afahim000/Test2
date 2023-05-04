@@ -1,0 +1,66 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Images
+    link(rel="stylesheet", href="stylesheets/image.css")
+  body 
+    header 
+      .back
+        a.btn(href='options') Back
+      h1
+        span.highlight All 
+        | our 
+        span.highlight images 
+
+    table#table.table
+      thead.table_head 
+        tr.table_head_row 
+          th#id ID
+          th#fn File Name 
+          th#ft File Type
+          th#an Animal
+          th#da Date
+          th#ad Address
+          th#lo Longitude 
+          th#la Latitude
+          th#up Uploaded by
+          th#tl TLA
+          th#co Comments
+          th#li Link
+      tbody
+        if data
+          each event in data
+            tr
+              td.id #{event._id}
+              td #{event.fileName}
+              td #{event.mediaType}
+              td #{event.animalName}
+              td #{event.date}
+              td #{event.location.address}
+              td #{event.location.latitude}
+              td #{event.location.longitude}
+              td #{event.recorder.first} #{event.recorder.last}
+              td #{event.tla}
+              td #{event.comments}
+  
+    .row 
+      .column 
+        img(src="images/Fiddler-Crabs.jpg", alt="crabs")
+        img(src="images/h.png", alt="h")
+        img(src="images/hero.png", alt="hero")
+      .column 
+        img(src="images/map.png", alt="map")
+        img(src="images/user-1.jpg", alt="user")
+      .column
+        img(src="images/user-2.jpg", alt="user")
+        img(src="img/-1682362587011.jpg", alt="zapato")
+      .column 
+        img(src="img/-1682969540958.JPG", alt="tabla")
+        img(src="img/-1680324870459.js", alt="js code")
+        img(src="images/user-3.jpg", alt="user")
+  
+    script(type='text/javascript' defer).
+

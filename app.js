@@ -25,6 +25,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // 'public' dir has the css, js, and images dirs
+// These give the html pages access to the resources stored in 
+// the directories 'public' and 'dev-data'
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'dev-data')));
 

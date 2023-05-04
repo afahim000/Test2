@@ -79,11 +79,11 @@ html(lang="en")
                 td #{event.comments}
                 td
                   //- img(src= `${event.fileDirectory}` alt='Testimony')
+                  //- Links to the location of the file
                   a(href=`${event.fileDirectory}`)
                     img(src=`images/icon_${event.mediaType}.png`, alt="icon")
     
     script(type='text/javascript' defer = '').
-      
       const form = document.getElementById('form');
       const fileType = document.getElementById('fileType');
       const animal = document.getElementById('animal');

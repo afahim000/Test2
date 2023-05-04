@@ -45,6 +45,7 @@ h1 {
 
 .buttons {
 	width: 500px;
+	width: 600px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
