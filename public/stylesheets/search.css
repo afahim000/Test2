@@ -11,7 +11,8 @@
 }
 
 html {
-  background: linear-gradient(rgba(94, 197, 118, 0.6), rgba(255, 203, 3, 0.4));
+  /* background: linear-gradient(rgba(94, 197, 118, 0.6), rgba(255, 203, 3, 0.4)); */
+  background-color: #f6f7f8;
   font-family: montserrat, arial, verdana;
   height: 100%;
   width: 100%;
@@ -46,6 +47,8 @@ h1 {
   margin-bottom: 5px;
 }
 
+
+
 /* ----- */
 /* Table */
 /* ----- */
@@ -63,7 +66,7 @@ h1 {
   border-radius: 3px;
   display: block;
   /* Ajust height - check how to make it to fix the screen */
-  height: 533px;
+  height: 527px;
   overflow: auto;
 }
 
@@ -159,6 +162,9 @@ form {
   flex-wrap: wrap;
   gap: 10px;
   align-items: end;
+  border: 2px solid var(--color-primary);
+  padding: 2px;
+  /* background: linear-gradient(to right, rgba(94, 197, 118, 0.245), rgba(255, 205, 3, 0.168)); */
 }
 
 .div {

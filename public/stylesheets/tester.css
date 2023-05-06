@@ -6,10 +6,12 @@
   --color-secondary: #ffcb03;
   --color-secondary-opacity: #ffcd0331;
   --color-labels: #666;
+  --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
 }
 
 html {
-  background: linear-gradient(rgba(94, 197, 118, 0.6), rgba(255, 203, 3, 0.4));
+  /* background: linear-gradient(rgba(94, 197, 118, 0.6), rgba(255, 203, 3, 0.4)); */
+  background-color: #f6f7f8;
   font-family: montserrat, arial, verdana;
 }
 
@@ -41,6 +43,24 @@ h1 {
   margin-top: 0;
 }
 
+.highlight {
+  position: relative;
+}
+
+.highlight::after {
+  display: block;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.7;
+  transform: scale(1.07, 1.05) skewX(-15deg);
+  background-image: var(--gradient-primary);
+}
+
 /*form styles*/
 .formbox {
   display: flex;
@@ -62,6 +82,7 @@ fieldset {
   padding: 20px 30px;
   box-sizing: border-box;
   width: 530px;
+  background: linear-gradient(rgba(94, 197, 118, 0.245), rgba(255, 205, 3, 0.168));
 }
 
 /*inputs*/

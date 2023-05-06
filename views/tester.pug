@@ -175,7 +175,9 @@ html(lang="en")
   body
     .back
       a.btn(href='../options') Back
-    h1 Upload a file
+    h1 
+      span.highlight Upload 
+      | a file
     .formbox
       form#msform(onSubmit = 'return true' method='POST' action='' enctype='multipart/form-data')
         fieldset
