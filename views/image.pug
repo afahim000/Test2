@@ -18,49 +18,31 @@ html(lang="en")
         span.highlight images 
   
     .row 
-      #col
-      #c1.column
-      //-   img(src="images/Fiddler-Crabs.jpg", alt="crabs")
-      //-   img(src="images/h.png", alt="h")
-      //-   img(src="images/hero.png", alt="hero")
-      #c2.column 
-      //-   img(src="images/map.png", alt="map")
-      //-   img(src="images/user-1.jpg", alt="user")
-      #c3.column
-      //-   img(src="images/user-2.jpg", alt="user")
-      //-   img(src="img/-1682362587011.jpg", alt="zapato")
-      #c4.column 
-      //-   img(src="img/-1682969540958.JPG", alt="tabla")
-      //-   img(src="img/-1680324870459.js", alt="js code")
-      //-   img(src="images/user-3.jpg", alt="user")
+      each listImages in data 
+        //- //- Seaparate into 4 columns the images received
+        //- .column
+        //-   each image in listImages
+        //-     img(src=`/img/${image}`, alt=`${image}`)
       if data 
+        - let count = 0;    
+        - const imagePerCol = data.length / 4  
+        - let next = imagePerCol;
 
-        //- - for (let i = 0; i < 4; i++)
-          .column
-            - console.log()
-            - for (let j = 0; j < data.length; j++)
-              p=`img/${data[j]}`
-        - let count = 0;      
-        each event in data 
-          .column
-              img(src=`img/${event}`, alt=`${event}`)
+        - let current = 0;
+        - let hash = {}
+        - let colCount = 0;
+        - for (var x = 0; x < data.length; x+=imagePerCol)
+            - hash[`col${colCount}`] = data.slice(x, x + imagePerCol)
+            - colCount += 1;
+
+        each val, key in hash
+          .column 
+            each img in val
+              img(src=`img/${img}`, alt=`${img}`)
 
   
     script(type='text/javascript' defer).
-      //- const col = getElementById('col');
-      //- const imges = [];
-      //- #{data}.forEach(file => {
-      //-   images.push(document.createElement('img').setAttribute('src', `img/${file}`))
-      //- });
-      //- col.appendChild(imges);
-      //- document.createElement('img');
-      //- col.appendChild(col);
-      //- col.innerhtml = #{data};
-      
-  //- #{data}.forEach(file => {
-  //-   console.log(file);
-  //- });
-  //- console.log(#{data});
+
       
 
 

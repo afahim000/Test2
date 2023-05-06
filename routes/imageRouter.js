@@ -19,6 +19,11 @@ fs.readdirSync('./dev-data/img').forEach(file => {
 //Routes HTTP GET requests to the specified path with the specified callback functions.
 // Sends the array of images name to image.pug file
 router.get('/', (req, res) => {
+	// Create 4 lists dividing each image.
+	let listOfColumns = [[], [], [], []];
+	for (let i = 0; i < images.length; i++) {
+		listOfColumns[i % 4].push(images[i]);
+	}
 	res.status(200).render('image', { data: images });
 });
 
