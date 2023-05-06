@@ -69,7 +69,7 @@ exports.addDataGet = (req, res) => {
 	res.status(200).render('tester', { title: 'tester' });
 };
 
-// Send data to Image page
+// Send data to Image page - doesn't work DELETE
 exports.sendImage = (req, res) => {
 	let name;
 	let query = animalSchema.find({});
@@ -77,7 +77,6 @@ exports.sendImage = (req, res) => {
 		name = req.body.animallist;
 		query = animalSchema.find({ animalName: name });
 	}
-
 	query = query.then((response) => {
 		res.render('image', { data: response })
 	});
