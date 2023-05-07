@@ -18,27 +18,28 @@ html(lang="en")
         span.highlight images 
   
     .row 
-      each listImages in data 
-        //- //- Seaparate into 4 columns the images received
-        //- .column
-        //-   each image in listImages
-        //-     img(src=`/img/${image}`, alt=`${image}`)
-      if data 
-        - let count = 0;    
-        - const imagePerCol = data.length / 4  
-        - let next = imagePerCol;
+      if data
+        each listImages in data 
+          //- Seaparate into 4 columns the images received
+          .column
+            each image in listImages
+              img(src=`img/${image}`, alt=`${image}`)
+      //- if data 
+      //-   - let count = 0;    
+      //-   - const imagePerCol = data.length / 4  
+      //-   - let next = imagePerCol;
 
-        - let current = 0;
-        - let hash = {}
-        - let colCount = 0;
-        - for (var x = 0; x < data.length; x+=imagePerCol)
-            - hash[`col${colCount}`] = data.slice(x, x + imagePerCol)
-            - colCount += 1;
+      //-   - let current = 0;
+      //-   - let hash = {}
+      //-   - let colCount = 0;
+      //-   - for (var x = 0; x < data.length; x+=imagePerCol)
+      //-       - hash[`col${colCount}`] = data.slice(x, x + imagePerCol)
+      //-       - colCount += 1;
 
-        each val, key in hash
-          .column 
-            each img in val
-              img(src=`img/${img}`, alt=`${img}`)
+      //-   each val, key in hash
+      //-     .column 
+      //-       each img in val
+      //-         img(src=`img/${img}`, alt=`${img}`)
 
   
     script(type='text/javascript' defer).

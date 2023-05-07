@@ -5,6 +5,7 @@
 :root {
   --color-secondary: #ffcb03;
   --color-secondary-opacity: #ffcd0331;
+  --color-tertiary: #ff585f;
   --color-labels: #666;
   --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
 }
@@ -219,7 +220,7 @@ input[type='time']:before {
 }
 
 /* MODAL WINDOW */
-#hidden {
+.message {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -227,19 +228,27 @@ input[type='time']:before {
   max-width: 60rem;
   background-color: #f3f3f3;
   padding: 5rem 6rem;
-  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 6rem rgba(0, 0, 0, 0.3);
   z-index: 1000;
   transition: all 0.5s;
   flex-flow: column;
   align-items: center;
-  display: none;
+  display: flex;
 }
 
-#hidden p {
+.message p {
   font-size: medium;
   text-align: center;
 }
 
-#hidden p span {
+.message p span {
   font-size: large;
+}
+
+#back {
+  background-color: var(--color-tertiary);
+}
+
+#back:hover {
+  background-color: #fc7b81;
 }

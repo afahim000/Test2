@@ -136,9 +136,9 @@ exports.queryOptionsPost = (req, res) => {
 
 };
 
-exports.addDataPost = (req, res) => {
+exports.addDataPost = async (req, res) => {
 
-	imgUpload(req, res, (err) => {
+	imgUpload(req, res, async (err) => {
 		if (err) {
 			res.render('tester');
 			res.send('MEOWWWW!!!!');
@@ -168,8 +168,14 @@ exports.addDataPost = (req, res) => {
 				mediaType: req.body.filetypes,
 				fileDirectory: `${fileLocation}/${req.file.filename}`
 			});
-			data.save();
-			// res.send('');
+			try {
+				await data.save();
+				res.redirect('/upload-success');
+			}
+			catch (saveErr) {
+				res.redirect('/upload-fail');
+			}
+			// res.send('/add');
 		}
 	});
 

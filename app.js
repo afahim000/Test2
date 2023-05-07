@@ -11,6 +11,8 @@ var addRouter = require('./routes/addRouter');
 var videoRouter = require('./routes/videoRouter');
 var audioRouter = require('./routes/audioRouter');
 var imageRouter = require('./routes/imageRouter');
+var uploadSuccessRouter = require('./routes/uploadSuccessRouter');
+var uploadFailRouter = require('./routes/uploadFailRouter');
 var app = express();
 
 const mongoose = require('mongoose');
@@ -38,6 +40,9 @@ app.use('/add', addRouter);
 app.use('/image', imageRouter);
 app.use('/audio', audioRouter);
 app.use('/video', videoRouter);
+app.use('/upload-success', uploadSuccessRouter);
+app.use('/upload-fail', uploadFailRouter);
+
 // ***** DELETE THIS ? *****
 // To display the pictures
 // gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine

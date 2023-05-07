@@ -229,11 +229,11 @@ html(lang="en")
           #incomplete
           button#action-button.action-button(type='submit') Submit
     
-    #hidden
-      p.message
-        span You 
-        | have successfuly uploaded a file to our database
-      button#done Done
+    //- #hidden
+    //-   p.message
+    //-     span You 
+    //-     | have successfuly uploaded a file to our database
+    //-   button#done Done
 
     script(type='text/javascript' defer = '').
       const firstName = document.getElementById('fname');
@@ -262,21 +262,21 @@ html(lang="en")
       /////////////////////////////////////
       // Modal - Hidden success message
 
-      const hidden = document.getElementById('hidden');
-      const done = document.getElementById('done');
+      //- const hidden = document.getElementById('hidden');
+      //- const done = document.getElementById('done');
 
-      const openModal = function (e) {
-        hidden.style.display = 'flex';
-      };
+      //- const openModal = function (e) {
+      //-   hidden.style.display = 'flex';
+      //- };
 
 
-      submit.addEventListener('sumbit', openModal);
+      //- submit.addEventListener('sumbit', openModal);
 
-      // Close popup message. Redirecting to Options page
-      done.addEventListener('click', () => {
-        hidden.style.display = 'none';
-        document.location.href = "/options";
-      });
+      //- // Close popup message. Redirecting to Options page
+      //- done.addEventListener('click', () => {
+      //-   hidden.style.display = 'none';
+      //-   document.location.href = "/options";
+      //- });
 
 
       ////////////////////////////////////////////////////
