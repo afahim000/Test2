@@ -5,12 +5,11 @@ const UserSchema = new Schema({
 
 firstName:{type: String, required: true, trim: true},
 lastName: {type: String, required: true, trim: true},
-email: {type: String, required: true, trim : true, unique: true},
-username: { type: String required: true, trim: true, unique: true},
-password: { type: Schema.Types.Mixed},
-profilePicture: { type: Buffer, default: '/assets/images/hero.png'}
-
-
+email: {type: Schema.Types.Mixed, required: true, trim : true, unique: true},
+password: { type: String, required: true},
+TLA: {type: String, required: true },
+profilePicture: { type: String , default: '/assets/images/hero.png'},
+role: String
 	})
 
 module.exports = mongoose.model("User", UserSchema);

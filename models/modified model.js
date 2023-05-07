@@ -61,5 +61,6 @@ animalSchema.virtual('Location').get(function () {
   return `longitude: ${this.location.longitude} latitude: ${this.location.latitude}`
 });
 
+
 //Stores the schema as an ODM (Object Data Model)
 module.exports = mongoose.model("Animal", animalSchema);

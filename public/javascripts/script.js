@@ -4,6 +4,7 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnsOpenModalLogin = document.querySelectorAll('.btn--show-modalLogin'); //I added this as well  AF
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 const nav = document.querySelector('.nav');
@@ -19,6 +20,12 @@ const openModal = function (e) {
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
 };
+//AF - 5/3 I added this
+const openModalLogin = function (e) {
+  e.preventDefault();
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
 
 const closeModal = function () {
   modal.classList.add('hidden');
@@ -26,6 +33,8 @@ const closeModal = function () {
 };
 
 btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
+btnsOpenModalLogin.forEach(btn => btn.addEventListener('click', openModalLogin));
+
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);

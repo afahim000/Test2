@@ -54,7 +54,6 @@ const audioUpload = multer({
 //const vidUpload;
 //const audioUpload;
 exports.getOptions = (req, res) => {
-	res.redirect = false;
 	res.status(200).render('buttons', { title: 'buttons'});
 };
 
@@ -63,7 +62,7 @@ exports.queryOptionsGet = (req, res) => {
 };
 
 exports.deleteGet = (req, res) => {
-	res.send("Not Implemented yet");
+	res.status(200).render('delete', {title: 'delete'});
 };
 
 
@@ -171,6 +170,59 @@ exports.addDataPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-	res.send("Not Implemented yet");
+	let name;
+	let startDate;
+	let endDate;
+	let lat;
+	let longitude;
+	let query = animalSchema.find({});
+	if(!req.body.animallist)
+	{
+	}
+	else
+	{
+		name = req.body.animallist
+		query = animalSchema.find({animalName: name});
+
+	}
+	if(!req.body.startDate)
+	{
+		startDate = '1000-12-31';
+	}
+	else
+	{
+		startDate = req.body.startDate;
+	}
+	if(!req.body.endDate)
+	{
+		endDate = '3000-12-31';
+	}
+	else
+	{
+		endDate = req.body.endDate;
+	}
+	query.find({ date:{"$gte": `${startDate}T00:00:00.000Z`, "$lte":
+	`${endDate}T00:00:00.000Z`}});
+	if(!req.body.latitude)
+	{
+	}
+	else
+	{
+		lat = req.body.latitude;
+		query.find({ 'location.latitude' : lat});
+	}
+	if(!req.body.longitude)
+	{
+	}
+	else
+	{
+		longitude = req.body.longitude;
+		query.find({ 'location.longitude' : longitude});
+	}
+	query = query.then((response) => {console.log(response);
+		res.render('delete', {data: response} )});
 };
 
+exports.removeFromDB = (req, res) => {
+	res.status(200).render('delete', {title: 'delete'});
+};

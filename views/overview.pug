@@ -110,18 +110,34 @@ block content
 
   .modal.hidden
     button.btn--close-modal &times;
-    h2.modal__header Log in <br> in BCR Lab for
-      span.highlight more features 
+    h2.modal__header Register<br> in BCR Lab for
+      span.highlight  more features 
     
-    form.modal__form
+    form(method = 'POST' action = '/register').modal__form
       label First Name 
-      input(type='text')
+      input(type='text' name = 'fname')
       label Last Name 
-      input(type='text') 
+      input(type='text' name = 'lname') 
       label Email Address
-      input(type='email')
-      button.btn Next step &rarr;
+      input(type='email' name = 'email')
+      label Password
+      input(type='password' name = 'password')
+      label TLA
+      input(type = 'text' name = 'TLA')
+      label
+      button.btn(type = 'submit') Next step &rarr;
+  
+  .modal.hidden
+    button.btn--close-modal &times;
+    h2.modal__header Login<br> in BCR Lab for
+      span.highlight  more features   
 
+    form(method = 'POST' action = '/login').modal__form
+      label Email
+      input(type='text' name = 'email')
+      label Password 
+      input(type='text' name = 'password') 
+      button.btn(type = 'submit') login &rarr;
   .overlay.hidden
 
 

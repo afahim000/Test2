@@ -1,8 +1,9 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var bcrypt = require('bcrypt');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var logger = require('morgan')
 var dataRouter = require('./controllers/dataRouter');
 var viewsRouter = require('./routes/viewsRoutes');
 var usersRouter = require('./routes/users');
@@ -11,6 +12,8 @@ var addRouter = require('./routes/addRouter');
 var videoRouter = require('./routes/videoRouter');
 var audioRouter = require('./routes/audioRouter');
 var imageRouter = require('./routes/imageRouter');
+var deleteRouter = require('./routes/deleteRouter');
+const userSchema = require('./models/Users');
 var app = express();
 
 const mongoose = require('mongoose');
@@ -36,6 +39,7 @@ app.use('/add', addRouter);
 app.use('/image', imageRouter);
 app.use('/audio', audioRouter);
 app.use('/video', videoRouter);
+app.use('/delete', deleteRouter);
 // ***** DELETE THIS ? *****
 // To display the pictures
 // gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine
@@ -57,7 +61,28 @@ app.use('/images', express.static(__dirname + '/assets/images'));
 //   res.render('buttons');
 // });
 
+app.post('/register', async (req, res)=>
+{
+	res.status(200).render('overview', { title: 'overview' });
+	var hashedPasswords;
+	var hashedPassword = await bcrypt.hash(req.body.password, 10);
+	bcrypt.hash(req.body.password, 10, function(err, hash){hashedPassword = hash});
+	
 
+	//	{bcrypt.hash(req.body.password, salt, function(err, hash)=>{})
+	//};
+	const user = new userSchema(
+	{
+		firstName: req.body.fname,
+		lastName: req.body.lname,
+		email: req.body.email,
+		password: hashedPassword,
+		TLA: req.body.TLA,
+		role: 'visitor'
+	})
+	console.log(hashedPassword);
+	user.save();
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
