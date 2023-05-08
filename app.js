@@ -16,11 +16,29 @@ var deleteRouter = require('./routes/deleteRouter');
 const userSchema = require('./models/Users');
 var uploadSuccessRouter = require('./routes/uploadSuccessRouter');
 var uploadFailRouter = require('./routes/uploadFailRouter');
-
+const compression = require("compression");
 var app = express();
+const helmet = require("helmet");
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+})
 
 const mongoose = require('mongoose');
 const dataController = require('./controllers/dataController');
+
+app.use(compression());
+
+
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    },
+  })
+);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -47,6 +65,16 @@ app.use('/video', videoRouter);
 app.use('/delete', deleteRouter);
 app.use('/upload-success', uploadSuccessRouter);
 app.use('/upload-fail', uploadFailRouter);
+
+
+// Rendering page mediaDisplay.pug - CIP
+app.use('/media-display/:display', (req, res) => {
+  const { display } = req.params;
+  res.render('mediaDisplay.pug', {
+    title: "Media Display",
+    display,
+  });
+})
 
 
 // ***** DELETE THIS ? *****
@@ -110,8 +138,8 @@ app.use(function (err, req, res, next) {
 });
 
 mongoose.set('strictQuery', false);
-const mongoDB = "mongodb+srv://abrar_fahim20:Sakib43st@cluster0.n9faamf.mongodb.net/?retryWrites=true&w=majority";
-
+const dev_db_url = "mongodb+srv://abrar_fahim20:Sakib43st@cluster0.n9faamf.mongodb.net/?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 //connect to the database with mongoose
 main().catch(err => console.log(err));
 async function main() {

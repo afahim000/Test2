@@ -85,6 +85,7 @@ exports.sendImage = (req, res) => {
 
 // Sends data to Search page
 exports.queryOptionsPost = (req, res) => {
+	//variables referring to different attributes
 	let name;
 	let startDate;
 	let endDate;
@@ -92,7 +93,10 @@ exports.queryOptionsPost = (req, res) => {
 	let longitude;
 	let endLat;
 	let endLong;
+	//initial query variable contains all animalSchema objects
 	let query = animalSchema.find({});
+	//The following if else statements initialize the varibales above and updates the query variable based
+	//on the input.
 	if (!req.body.animallist) {
 	}
 	else {
@@ -145,7 +149,7 @@ exports.queryOptionsPost = (req, res) => {
 		endLat = req.body.endlatitude;
 	}
 	query = query.find({'location.latitude': {"$gte": `${lat}`, "$lte": `${endLat}`}});
-	/*
+	
 	if (!req.body.longitude)
 	{
 		longitude = -180;
@@ -162,11 +166,10 @@ exports.queryOptionsPost = (req, res) => {
 		endLat = req.body.endlongitude;
 	}
 
-	query.find({ 'location.longitude': {"$gte": `${longitude}`, "$lte": `${endLong}`} });
-*/
+	query = query.find({ 'location.longitude': {"$gte": `${longitude}`, "$lte": `${endLong}`} });
+
 	query.then((response) => {
 		console.log('\n\n\nSending data to Search page\n.\n.\n.');
-		console.log(response);
 		res.render('search', { data: response })
 	});
 
