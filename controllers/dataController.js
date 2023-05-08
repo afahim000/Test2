@@ -101,7 +101,7 @@ exports.queryOptionsPost = (req, res) => {
 	}
 	else {
 		name = req.body.animallist
-		query = animalSchema.find({ animalName: name });
+		query = query.find({ animalName: name });
 
 	}
 	if(!req.body.fileType)
@@ -159,11 +159,11 @@ exports.queryOptionsPost = (req, res) => {
 	}
 	if(!req.body.endlongitude)
 	{
-		endLat = 180;
+		endLong = 180;
 	}
 	else
 	{
-		endLat = req.body.endlongitude;
+		endLong = req.body.endlongitude;
 	}
 
 	query = query.find({ 'location.longitude': {"$gte": `${longitude}`, "$lte": `${endLong}`} });
