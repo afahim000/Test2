@@ -43,6 +43,15 @@ app.use('/video', videoRouter);
 app.use('/upload-success', uploadSuccessRouter);
 app.use('/upload-fail', uploadFailRouter);
 
+// Rendering page mediaDisplay.pug - CIP
+app.use('/media-display/:display', (req, res) => {
+  const { display } = req.params;
+  res.render('mediaDisplay.pug', {
+    title: "Media Display",
+    display,
+  });
+})
+
 // ***** DELETE THIS ? *****
 // To display the pictures
 // gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine
