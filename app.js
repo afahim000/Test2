@@ -148,7 +148,7 @@ async function main() {
 
 const port = process.env.PORT || 3000;
 // start the server to listen using express
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   //if (process.env.NODE_ENV === 'development') {
   console.log(`The Server is UP and Running in port http://localhost:${port}\n`);
   //}
