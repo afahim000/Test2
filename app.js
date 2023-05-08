@@ -145,4 +145,12 @@ main().catch(err => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
 }
+
+const port = process.env.PORT || 3000;
+// start the server to listen using express
+app.listen(port, () => {
+  //if (process.env.NODE_ENV === 'development') {
+  console.log(`The Server is UP and Running in port http://localhost:${port}\n`);
+  //}
+});
 module.exports = app;
