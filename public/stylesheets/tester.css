@@ -1,0 +1,254 @@
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*Color palete*/
+:root {
+  --color-secondary: #ffcb03;
+  --color-secondary-opacity: #ffcd0331;
+  --color-tertiary: #ff585f;
+  --color-labels: #666;
+  --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
+}
+
+html {
+  /* background: linear-gradient(rgba(94, 197, 118, 0.6), rgba(255, 203, 3, 0.4)); */
+  background-color: #f6f7f8;
+  font-family: montserrat, arial, verdana;
+}
+
+/*Back Button*/
+.back {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn {
+  padding: 0.8rem 2.5rem;
+  background-color: var(--color-secondary);
+  border: 0;
+  font-size: medium;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background-color: var(--color-secondary-opacity);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.highlight {
+  position: relative;
+}
+
+.highlight::after {
+  display: block;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.7;
+  transform: scale(1.07, 1.05) skewX(-15deg);
+  background-image: var(--gradient-primary);
+}
+
+/*form styles*/
+.formbox {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  width: 600px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 530px;
+  background: linear-gradient(rgba(94, 197, 118, 0.245), rgba(255, 205, 3, 0.168));
+}
+
+/*inputs*/
+.input {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+
+input::file-selector-button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+
+/*inputs: eliminates spinners in Chrome, Safary, Edge, Opera*/
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*inputs: eliminates spinners in Firefox*/
+.input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.input[type=time]::-webkit-calendar-picker-indicator {
+  background: fixed;
+  padding: 2px;
+}
+
+/*button*/
+button {
+  width: 100px;
+  background: #27AE60;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px 5px;
+  text-decoration: none;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:hover,
+button:focus {
+  background: #58cd88;
+}
+
+/*Select and Option*/
+select {
+  background-color: white;
+}
+
+option {
+  background-color: white;
+  font-family: montserrat, arial, verdana !important;
+  color: var(--color-labels);
+}
+
+/*Text area*/
+textarea {
+  resize: vertical;
+  max-height: 140px;
+  min-height: 60px;
+}
+
+/*headings*/
+h2 {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-weight: normal;
+  font-size: 13px;
+  color: var(--color-labels);
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+#incomplete {
+  color: red;
+}
+
+.twoInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.threeInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+#sdate {
+  width: 164px;
+  height: fit-content;
+}
+
+.timeLabel {
+  font-size: small;
+  color: var(--color-labels);
+}
+
+#acronym {
+  width: 64px;
+}
+
+/*For time input elements - works better in Chrome*/
+input[type='time']:before {
+  content: attr(placeholder);
+  -moz-appearance: none;
+}
+
+/* MODAL WINDOW */
+.message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 60rem;
+  background-color: #f3f3f3;
+  padding: 5rem 6rem;
+  box-shadow: 0 0 6rem rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.5s;
+  flex-flow: column;
+  align-items: center;
+  display: flex;
+}
+
+.message p {
+  font-size: medium;
+  text-align: center;
+}
+
+.message p span {
+  font-size: large;
+}
+
+#back {
+  background-color: var(--color-tertiary);
+}
+
+#back:hover {
+  background-color: #fc7b81;
+}

@@ -14,6 +14,9 @@ var audioRouter = require('./routes/audioRouter');
 var imageRouter = require('./routes/imageRouter');
 var deleteRouter = require('./routes/deleteRouter');
 const userSchema = require('./models/Users');
+var uploadSuccessRouter = require('./routes/uploadSuccessRouter');
+var uploadFailRouter = require('./routes/uploadFailRouter');
+
 var app = express();
 
 const mongoose = require('mongoose');
@@ -28,6 +31,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // 'public' dir has the css, js, and images dirs
+// These give the html pages access to the resources stored in 
+// the directories 'public' and 'dev-data'
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'dev-data')));
 
@@ -40,6 +45,10 @@ app.use('/image', imageRouter);
 app.use('/audio', audioRouter);
 app.use('/video', videoRouter);
 app.use('/delete', deleteRouter);
+app.use('/upload-success', uploadSuccessRouter);
+app.use('/upload-fail', uploadFailRouter);
+
+
 // ***** DELETE THIS ? *****
 // To display the pictures
 // gotten from: https://stackoverflow.com/questions/49945339/inserting-image-in-pug-template-engine

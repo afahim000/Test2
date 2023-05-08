@@ -1,0 +1,49 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Images
+    link(rel="stylesheet", href="stylesheets/image.css")
+    //- Using jQuery to get the pictures from dev-data/img directory
+    //- script(src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous')
+  body 
+    header 
+      .back
+        a.btn(href='options') Back
+      h1
+        span.highlight All 
+        | our 
+        span.highlight images 
+  
+    .row 
+      if data
+        each listImages in data 
+          //- Seaparate into 4 columns the images received
+          .column
+            each image in listImages
+              img(src=`img/${image}`, alt=`${image}`)
+      //- if data 
+      //-   - let count = 0;    
+      //-   - const imagePerCol = data.length / 4  
+      //-   - let next = imagePerCol;
+
+      //-   - let current = 0;
+      //-   - let hash = {}
+      //-   - let colCount = 0;
+      //-   - for (var x = 0; x < data.length; x+=imagePerCol)
+      //-       - hash[`col${colCount}`] = data.slice(x, x + imagePerCol)
+      //-       - colCount += 1;
+
+      //-   each val, key in hash
+      //-     .column 
+      //-       each img in val
+      //-         img(src=`img/${img}`, alt=`${img}`)
+
+  
+    script(type='text/javascript' defer).
+
+      
+
+

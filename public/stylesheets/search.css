@@ -1,0 +1,252 @@
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+:root {
+  --color-primary: #5ec576;
+  --color-primary-darker: #4bbb7d;
+  --color-secondary: #ffcb03;
+  --color-secondary-opacity: #ffcd0331;
+  --color-labels: #666;
+  --height-labels: 37px;
+}
+
+html {
+  /* background: linear-gradient(rgba(94, 197, 118, 0.6), rgba(255, 203, 3, 0.4)); */
+  background-color: #f6f7f8;
+  font-family: montserrat, arial, verdana;
+  height: 100%;
+  width: 100%;
+}
+
+/*Back Button*/
+.back {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn {
+  padding: 0.8rem 2.5rem;
+  background-color: var(--color-secondary);
+  border: 0;
+  font-size: medium;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.btn:hover {
+  background-color: var(--color-secondary-opacity);
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+
+
+/* ----- */
+/* Table */
+/* ----- */
+.table_container {
+  margin: 0;
+  margin-top: 5px;
+  padding: 0;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 3px;
+  display: block;
+  /* Ajust height - check how to make it to fix the screen */
+  height: 527px;
+  overflow: auto;
+}
+
+.table_head th {
+  background: var(--color-primary-darker);
+  color: white;
+  font-size: 13pt;
+  position: sticky;
+  top: 0;
+}
+
+.table td,
+.table th {
+  padding-right: 3px;
+  padding-left: 3px;
+  text-align: center;
+  margin: 0px;
+}
+
+#table_body td {
+  margin: 10px;
+  margin: 2px;
+}
+
+#table_body tr:nth-child(odd) {
+  background-color: rgb(230, 230, 230);
+}
+
+#table_body tr:nth-child(even) {
+  background-color: white;
+}
+
+/* Colums size */
+#id {
+  width: 8.3%
+}
+
+#fn {
+  width: 8.3%
+}
+
+#ft {
+  width: 5%
+}
+
+#an {
+  width: 8.3%
+}
+
+#da {
+  width: 8.3%
+}
+
+#ad {
+  width: 8.3%
+}
+
+#lo {
+  width: 5.1%
+}
+
+#la {
+  width: 5.1%
+}
+
+#up {
+  width: 7%
+}
+
+#tl {
+  width: 2%
+}
+
+#co {
+  width: 8.3%
+}
+
+#li {
+  width: 2.5%
+}
+
+img {
+  width: 23px;
+}
+
+/* ----------- */
+/* Search Form */
+/* ----------- */
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+  border: 2px solid var(--color-primary);
+  padding: 2px;
+  /* background: linear-gradient(to right, rgba(94, 197, 118, 0.245), rgba(255, 205, 3, 0.168)); */
+}
+
+.div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: center;
+}
+
+.subdiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+span {
+  font-size: small;
+}
+
+/*Inputs*/
+
+.input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 150px;
+  height: fit-content;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+
+/*Removes spinners for input type=number (Chrome, Safary, Edge, Opera)*/
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*Removes spinners for input type=number (Firefox)*/
+.input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Remlves clock icon for input type=time */
+.input[type=time]::-webkit-calendar-picker-indicator {
+  background: fixed;
+  padding: 2px;
+}
+
+select {
+  padding: 0;
+  height: var(--height-labels);
+  background-color: white;
+}
+
+option {
+  font-family: montserrat, arial, verdana !important;
+}
+
+/*button*/
+#action-button {
+  width: 100px;
+  height: var(--height-labels);
+  background: #27AE60;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 2px;
+  margin: 0;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+#action-button:hover {
+  background: var(--color-secondary-opacity);
+}
+
+#action-button:focus {
+  background: #27AE60;
+}

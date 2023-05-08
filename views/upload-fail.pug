@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Upload success
+    link(rel='stylesheet' type='text/css' href='stylesheets/tester.css')
+  body 
+    .message
+      p
+        span You 
+        | were not able to successfuly uploaded a file to our database
+      button#back Back
+
+    script(type='text/javascript' defer). 
+      const back = document.getElementById('back');
+      // Redirects back to add page
+      back.addEventListener('click', () => {
+        document.location.href = "/add";
+      });

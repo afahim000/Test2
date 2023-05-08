@@ -175,26 +175,24 @@ html(lang="en")
   body
     .back
       a.btn(href='../options') Back
-    h1 
-      span.highlight Upload 
-      | a file
+    h1 Upload a file
     .formbox
       form#msform(onSubmit = 'return true' method='POST' action='' enctype='multipart/form-data')
         fieldset
           h3.fs-subtitle Step 1: Insert your name and 3-letter acronym
           .twoInputs
-            input#fname.input(type="text" placeholder="First Name" name="fname")
-            input#lname.input(type="text" placeholder="Last Name" name='lname')
-            input#acronym.input(type="text" placeholder="TLA" maxlength="3" name='acronym')
+            input#fname.input(type="text" placeholder="First Name" name="fname" value = 'bob')
+            input#lname.input(type="text" placeholder="Last Name" name='lname' value = 'maria')
+            //- input#acronym.input(type="text" placeholder="TLA" maxlength="3" name='acronym' value = 'DHF')
           h3.fs-subtitle Step 2: Select type of animal
           select#animal.input(name='animallist')
             option(value="" selected disabled)
             option(value="monk_parakeet") Monk Parakeet
             option(value='fiddler_crab') Fiddler Crab
           h3.fs-subtitle Step 3: Insert location coordinates 
-          .twoInputs
-            input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude')
-            input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude')
+          //- .twoInputs
+          //-   input#latitude.input(type="number" placeholder="Latitude" max="90" min="-90" name='latitude' value = '12')
+          //-   input#longitude.input(type="number" placeholder="Longitude" max="180" min="-180" name='longitude' value = '12')
           h3.fs-subtitle Step 4: Insert address of sighting
           .twoInputs 
             input#street.input(type='text' name='street' placeholder='Street')
@@ -210,10 +208,10 @@ html(lang="en")
             input#sdate.input(type='date' name='sdate')
             .setTime
               span.timeLabel Start time 
-              input#stime.input(type='time' name='stime')
+              input#stime.input(type='time' name='stime' placeholder='Start')
             .setTime
               span.timeLabel End time
-              input#etime.input(type='time' name='etime')
+              input#etime.input(type='time' name='etime' placeholder='End')
           h3.fs-subtitle Step 6: Select type of file
           select#filename.input(name="filetypes" placeholder = "file types")
             option(value='' selected disabled)
@@ -225,23 +223,16 @@ html(lang="en")
           h3.fs-subtitle Step 8: Give comments -optional-
           textarea.input(name='comments' type='text' maxlength='300' placeholder='Comments')
           h3.fs-subtitle Finally: Press Submit!
-          //- #incomplete displays the error messages
           #incomplete
           button#action-button.action-button(type='submit') Submit
-    
-    //- #hidden
-    //-   p.message
-    //-     span You 
-    //-     | have successfuly uploaded a file to our database
-    //-   button#done Done
 
     script(type='text/javascript' defer = '').
       const firstName = document.getElementById('fname');
       const lastName = document.getElementById('lname');
-      const acronym = document.getElementById('acronym')
+      //- const acronym = document.getElementById('acronym')
       const animal= document.getElementById('animal');
-      const latitude = document.getElementById('latitude');
-      const longitude = document.getElementById('longitude');
+      //- const latitude = document.getElementById('latitude');
+      //- const longitude = document.getElementById('longitude');
       const street = document.getElementById('street');
       const city = document.getElementById('city');
       const state = document.getElementById('state');
@@ -258,36 +249,10 @@ html(lang="en")
       const filename = document.getElementById('filename');
       const incomplete = document.getElementById('incomplete');
       const errors = false;
-      
-      /////////////////////////////////////
-      // Modal - Hidden success message
 
-      //- const hidden = document.getElementById('hidden');
-      //- const done = document.getElementById('done');
-
-      //- const openModal = function (e) {
-      //-   hidden.style.display = 'flex';
-      //- };
-
-
-      //- submit.addEventListener('sumbit', openModal);
-
-      //- // Close popup message. Redirecting to Options page
-      //- done.addEventListener('click', () => {
-      //-   hidden.style.display = 'none';
-      //-   document.location.href = "/options";
-      //- });
-
-
-      ////////////////////////////////////////////////////
-      // Setting date's input box initial value to today's
-      sdate.valueAsDate = new Date();
-      stime.value = '10:00';
-      etime.value = '13:00';
-
-      //////////////////////
-      // Input validation //
-      //////////////////////
+      // ----------------
+      // Input validation
+      // ----------------
       form.addEventListener('submit', (e)=>{
         //Stores messages for incomplete fields
         const messages = [];
@@ -299,23 +264,23 @@ html(lang="en")
           messages.push('*First and Last Name Required - Step 1');
         }
         // Evaluate 'acronym' input field
-        if (!/[A-Z]{3}/.test(acronym.value))
-        {
-          e.preventDefault();
-          messages.push('*TLA - Type 3 capital letters Required - Step 1')
-        }
+        //- if (!/[A-Z]{3}/.test(acronym.value))
+        //- {
+        //-   e.preventDefault();
+        //-   messages.push('*TLA - Type 3 capital letters - Step 1')
+        //- }
         // Evaluate 'animal' input field
         if(animal.value === null || animal.value === '')
         {
           e.preventDefault();
           messages.push('*Animal name required - Step 2');
         }
-        // Evaluate 'latitude' and 'longitude' input fields
-        if(latitude.value === '' || longitude.value === '')
-        {
-          e.preventDefault();
-          messages.push('*Latitude and Longitude Required - Step 3');
-        }
+        //- // Evaluate 'latitude' and 'longitude' input fields
+        //- if(latitude.value === '' || longitude.value === '')
+        //- {
+        //-   e.preventDefault();
+        //-   messages.push('*Latitude and Longitude Required - Step 3');
+        //- }
         // Evaluate 'address' input field
         // Using Regular Expressions to validate the correct format of the address
         const streetFormat = /^\d+ [\w\d .]+$/;
@@ -326,7 +291,7 @@ html(lang="en")
         if(!streetFormat.test(street.value))
         {
           e.preventDefault();
-          messages.push('*Street Required. Check format (123 Main St.) - Step 4');
+          messages.push('*Street Required. Check format - Step 4');
         }
         if(!cityFormat.test(city.value))
         {
@@ -352,16 +317,16 @@ html(lang="en")
         if(sdate.value === '' || stime.value === '' || etime.value === '')
         {
           e.preventDefault();
-          messages.push('*Date, start and end times Required - Step 5');
+          messages.push('*Date and time Required - Step 5');
         }
         // Evaluate 'file name' input field
-        if(filename.value === '')
+        if(filename.value === null || filename.value === '')
         {
           e.preventDefault();
           messages.push('*File type required - Step 6'); 
         }
         // Evaluate 'upload' input field
-        if(upload.value === '')
+        if(upload.value === null || upload.value === '')
         {
           e.preventDefault();
           messages.push('*No file attached - Step 7');
@@ -411,9 +376,9 @@ html(lang="en")
         }
       });
 
-      /////////////////////////
-      // For address section //
-      /////////////////////////
+      // -------------------
+      // For address section
+      // -------------------
       // List of States
       const usstates = [ "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
       "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine",
@@ -432,12 +397,9 @@ html(lang="en")
         selectstate.appendChild(option);
       }
       
-      
 
-
-
-//- if errors
-//-  error.msg
+if errors
+ error.msg
 
 
 
